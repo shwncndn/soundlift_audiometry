@@ -1,5 +1,30 @@
 # SoundLift
 
+
+```mermaid
+erDiagram
+User {
+  string username
+  string email
+  string password
+  string hashed_password
+  naive_datetime confirmed_at
+}
+TestResults {
+    integer left_ear
+    integer right_ear
+    naive_datetime published_on  
+}
+ResultsLog {
+    integer left_ear
+    integer right_ear
+    date published_on
+}
+User ||--O{ TestResults: ""
+User ||--|| ResultsLog: ""
+TestResults }O--|| ResultsLog: ""
+```
+
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies
