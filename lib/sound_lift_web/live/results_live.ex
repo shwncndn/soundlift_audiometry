@@ -8,6 +8,7 @@ defmodule SoundLiftWeb.ResultsLive do
   def render(assigns) do
     ~H"""
     <h1>Test Results</h1>
+    
     """
   end
 end

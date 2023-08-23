@@ -36,19 +36,6 @@ defmodule SoundLift.Results.Result do
       :step_six_left,
       :step_six_right
     ])
-    |> validate_required([
-      :step_one_left,
-      :step_one_right,
-      :step_two_left,
-      :step_two_right,
-      :step_three_left,
-      :step_three_right,
-      :step_four_left,
-      :step_four_right,
-      :step_five_left,
-      :step_five_right,
-      :step_six_left,
-      :step_six_right
-    ])
+
   end
 end
