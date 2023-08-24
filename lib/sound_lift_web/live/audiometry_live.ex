@@ -16,25 +16,36 @@ defmodule SoundLiftWeb.AudiometryLive do
 
   def render(assigns) do
     ~H"""
-    <h1 class="text-4xl py-8"><%= String.capitalize(Atom.to_string(@current_ear)) %> Ear</h1>
-    <h1 class="text-4xl py-8">Volume: <%= @volume %></h1>
-    <h1 class="text-4xl py-8">Step <%= @step %></h1>
+    <h1 id="current-ear" class="text-4xl py-8">
+      <%= String.capitalize(Atom.to_string(@current_ear)) %> Ear
+    </h1>
+    <h1 id="current-volume" class="text-4xl py-8">Volume: <%= @volume %></h1>
+    <h1 id="current-step" class="text-4xl py-8">Step <%= @step %></h1>
     <p class="text-sm py-8">Step <%= Kernel.inspect(@result) %></p>
     <div class="flex flex-col items-center">
-      <.button class="rounded-lg bg-yellow-400 hover:bg-yellow-300
-     py-2 px-1 w-16" phx-click="inc">
+      <.button
+        id="inc"
+        class="rounded-lg bg-yellow-400 hover:bg-yellow-300
+     py-2 px-1 w-16"
+        phx-click="inc"
+      >
       </.button>
       <p>Louder</p>
     </div>
     <div class="border-b border-t border-gray-300"></div>
     <div class="flex flex-col items-center">
       <p>Softer</p>
-      <.button class="rounded-lg bg-yellow-400 hover:bg-yellow-300
+      <.button
+        id="dec"
+        class="rounded-lg bg-yellow-400 hover:bg-yellow-300
       py-2 px-1 w-16
-     " phx-click="dec">
+     "
+        phx-click="dec"
+      >
       </.button>
 
       <.button
+        id="save-and-continue"
         class="my-4 bg-yellow-400 hover:bg-yellow-300 rounded-full"
         phx-click="save_and_continue"
       >
@@ -88,17 +99,16 @@ defmodule SoundLiftWeb.AudiometryLive do
       end
 
     {:ok, result} =
-      Results.update_result(socket.assigns.result, Map.new([{field, socket.assigns.volume}]))
+      Results.update_result(IO.inspect(socket.assigns.result), Map.new([{field, socket.assigns.volume}]))
 
     socket =
       cond do
         socket.assigns.current_ear == :right and socket.assigns.step == 6 ->
           socket
           |> put_flash(:info, "Test Complete!")
-          |> push_navigate(to: "/results")
+          |> push_navigate(to: ~p"/results/#{result}")
 
         socket.assigns.current_ear == :left ->
-          # assign(socket, :current_ear, :right)
           socket
           |> assign(:current_ear, :right)
 

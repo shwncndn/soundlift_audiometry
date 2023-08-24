@@ -1,13 +1,31 @@
 defmodule SoundLiftWeb.ResultsLive do
   use SoundLiftWeb, :live_view
 
-  def mount(_params, _session, socket) do
-    {:ok, socket}
+  alias SoundLift.Results
+
+  def mount(params, _session, socket) do
+
+    result = Results.get_result!(params["id"])
+
+    acc_result =
+    socket.assigns.result
+    |> Map.from_struct()
+    |> Enum.filter(fn {_key, value} -> is_integer(value) end)
+    |> Enum.map(fn {_key, value} -> value end)
+    |> Enum.sum()
+
+    {:ok,
+      socket
+    |> assign(:result, result)
+    |> assign(:acc_result, acc_result)
+    }
   end
 
   def render(assigns) do
     ~H"""
-    <h1>Test Results</h1>
+    <h1>Test Results: <%= @acc_result %> </h1>
     """
   end
+
+
 end
