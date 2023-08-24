@@ -67,69 +67,30 @@ defmodule SoundLiftWeb.AudiometryLive do
     # 6, left
     # 6, right
 
-    # valid_attrs = %{
-    #   step_one_left: 0,
-    #   step_one_right: 0,
-    #   step_two_left: 0,
-    #   step_two_right: 0,
-    #   step_three_left: 0,
-    #   step_three_right: 0,
-    #   step_four_left: 0,
-    #   step_four_right: 0,
-    #   step_five_left: 0,
-    #   step_five_right: 0,
-    #   step_six_left: 0,
-    #   step_six_right: 0
-    # }
-
-
-
     # assign(:result, Results.update_result(socket.assigns.result, %{step_one_left: 1}))
     # {:ok, result} = Results.update_result(socket.assigns.result, %{step_one_left: 1})
-IO.inspect(socket, label: "SOCKET STATE")
-    {:ok, result} =
-      case socket do
-        socket when socket.assigns.current_ear == :left and socket.assigns.step == 1 ->
-          Results.update_result(socket.assigns.result, %{step_one_left: socket.assigns.volume})
 
-        socket when socket.assigns.current_ear == :right and socket.assigns.step == 1 ->
-          Results.update_result(socket.assigns.result, %{step_one_right: socket.assigns.volume})
-
-        socket when socket.assigns.current_ear == :left and socket.assigns.step == 2 ->
-          Results.update_result(socket.assigns.result, %{step_two_left: socket.assigns.volume})
-
-        socket when socket.assigns.current_ear == :right and socket.assigns.step == 2 ->
-          Results.update_result(socket.assigns.result, %{step_two_right: socket.assigns.volume})
-
-        socket when socket.assigns.current_ear == :left and socket.assigns.step == 3 ->
-          Results.update_result(socket.assigns.result, %{step_three_left: socket.assigns.volume})
-
-        socket when socket.assigns.current_ear == :right and socket.assigns.step == 3 ->
-          Results.update_result(socket.assigns.result, %{step_three_right: socket.assigns.volume})
-
-        socket when socket.assigns.current_ear == :left and socket.assigns.step == 4 ->
-          Results.update_result(socket.assigns.result, %{step_four_left: socket.assigns.volume})
-
-        socket when socket.assigns.current_ear == :right and socket.assigns.step == 4 ->
-          Results.update_result(socket.assigns.result, %{step_four_right: socket.assigns.volume})
-
-        socket when socket.assigns.current_ear == :left and socket.assigns.step == 5 ->
-          Results.update_result(socket.assigns.result, %{step_five_left: socket.assigns.volume})
-
-        socket when socket.assigns.current_ear == :right and socket.assigns.step == 5 ->
-          Results.update_result(socket.assigns.result, %{step_five_right: socket.assigns.volume})
-
-        socket when socket.assigns.current_ear == :left and socket.assigns.step == 6 ->
-          Results.update_result(socket.assigns.result, %{step_six_left: socket.assigns.volume})
-
-        socket when socket.assigns.current_ear == :right and socket.assigns.step == 6 ->
-          Results.update_result(socket.assigns.result, %{step_six_right: socket.assigns.volume})
-
-        _ ->
-          "No match"
+    field =
+      case {socket.assigns.current_ear, socket.assigns.step} do
+        {:left, 1} -> :step_one_left
+        {:right, 1} -> :step_one_right
+        {:left, 2} -> :step_two_left
+        {:right, 2} -> :step_two_right
+        {:left, 3} -> :step_three_left
+        {:right, 3} -> :step_three_right
+        {:left, 4} -> :step_four_left
+        {:right, 4} -> :step_four_right
+        {:left, 5} -> :step_five_left
+        {:right, 5} -> :step_five_right
+        {:left, 6} -> :step_six_left
+        {:right, 6} -> :step_six_right
+        _ -> "No match"
       end
 
-      socket =
+    {:ok, result} =
+      Results.update_result(socket.assigns.result, Map.new([{field, socket.assigns.volume}]))
+
+    socket =
       cond do
         socket.assigns.current_ear == :right and socket.assigns.step == 6 ->
           socket
@@ -147,6 +108,6 @@ IO.inspect(socket, label: "SOCKET STATE")
           |> assign(:step, socket.assigns.step + 1)
       end
 
-    {:noreply, assign(socket, :result, result)}
+    {:noreply, assign(socket, result: result, volume: 4)}
   end
 end
