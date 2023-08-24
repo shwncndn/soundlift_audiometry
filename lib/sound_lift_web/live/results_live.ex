@@ -6,9 +6,10 @@ defmodule SoundLiftWeb.ResultsLive do
   def mount(params, _session, socket) do
 
     result = Results.get_result!(params["id"])
+    {:ok, assign(socket, :result, result.id)}
 
     acc_result =
-    socket.assigns.result
+    result
     |> Map.from_struct()
     |> Enum.filter(fn {_key, value} -> is_integer(value) end)
     |> Enum.map(fn {_key, value} -> value end)
@@ -16,7 +17,7 @@ defmodule SoundLiftWeb.ResultsLive do
 
     {:ok,
       socket
-    |> assign(:result, result)
+    # |> assign(:result, result)
     |> assign(:acc_result, acc_result)
     }
   end
@@ -26,6 +27,4 @@ defmodule SoundLiftWeb.ResultsLive do
     <h1>Test Results: <%= @acc_result %> </h1>
     """
   end
-
-
 end
