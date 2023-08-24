@@ -17,14 +17,23 @@ defmodule SoundLiftWeb.ResultsLive do
 
     {:ok,
       socket
-    # |> assign(:result, result)
+    |> assign(:result, result)
     |> assign(:acc_result, acc_result)
     }
   end
 
   def render(assigns) do
     ~H"""
-    <h1>Test Results: <%= @acc_result %> </h1>
+    <div>Test Results:
+    <%= cond do %>
+    <%= @acc_result > 500 -> %>
+    <p>Hearing Loss</p>
+    <%= @acc_result < 500 -> %>
+    <p>No Hearing Loss</p>
+    <%= true -> %>
+    <p>default case</p>
+    <% end %>
+       </div>
     """
   end
 end
