@@ -9,7 +9,7 @@ defmodule SoundLiftWeb.AudiometryLive do
     {:ok,
      socket
      |> assign(:result, result)
-     |> assign(:volume, 3)
+     |> assign(:volume, 4)
      |> assign(:current_ear, :left)
      |> assign(:step, 1)}
   end
@@ -67,20 +67,20 @@ defmodule SoundLiftWeb.AudiometryLive do
     # 6, left
     # 6, right
 
-    valid_attrs = %{
-      step_one_left: 0,
-      step_one_right: 0,
-      step_two_left: 0,
-      step_two_right: 0,
-      step_three_left: 0,
-      step_three_right: 0,
-      step_four_left: 0,
-      step_four_right: 0,
-      step_five_left: 0,
-      step_five_right: 0,
-      step_six_left: 0,
-      step_six_right: 0
-    }
+    # valid_attrs = %{
+    #   step_one_left: 0,
+    #   step_one_right: 0,
+    #   step_two_left: 0,
+    #   step_two_right: 0,
+    #   step_three_left: 0,
+    #   step_three_right: 0,
+    #   step_four_left: 0,
+    #   step_four_right: 0,
+    #   step_five_left: 0,
+    #   step_five_right: 0,
+    #   step_six_left: 0,
+    #   step_six_right: 0
+    # }
 
     socket =
       cond do
