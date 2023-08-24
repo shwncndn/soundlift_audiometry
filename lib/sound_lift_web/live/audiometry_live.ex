@@ -104,13 +104,27 @@ defmodule SoundLiftWeb.AudiometryLive do
       end
 
       # assign(:result, Results.update_result(socket.assigns.result, %{step_one_left: 1}))
-      {:ok, result} = Results.update_result(socket.assigns.result, %{step_one_left: 1})
+      # {:ok, result} = Results.update_result(socket.assigns.result, %{step_one_left: 1})
 
+      {:ok, result} = case socket do
+        socket when socket.assigns.current_ear == :left and socket.assigns.step == 1 -> Results.update_result(socket.assigns.result, %{step_one_left: socket.assigns.volume})
+        socket when socket.assigns.current_ear == :right and socket.assigns.step == 1 -> Results.update_result(socket.assigns.result, %{step_one_right: socket.assigns.volume})
+        socket when socket.assigns.current_ear == :left and socket.assigns.step == 2 -> Results.update_result(socket.assigns.result, %{step_two_left: socket.assigns.volume})
+        socket when socket.assigns.current_ear == :right and socket.assigns.step == 2 -> Results.update_result(socket.assigns.result, %{step_two_right: socket.assigns.volume})
+        socket when socket.assigns.current_ear == :left and socket.assigns.step == 3 -> Results.update_result(socket.assigns.result, %{step_three_left: socket.assigns.volume})
+        socket when socket.assigns.current_ear == :right and socket.assigns.step == 3-> Results.update_result(socket.assigns.result, %{step_three_right: socket.assigns.volume})
+        socket when socket.assigns.current_ear == :left and socket.assigns.step == 4-> Results.update_result(socket.assigns.result, %{step_four_left: socket.assigns.volume})
+        socket when socket.assigns.current_ear == :right and socket.assigns.step == 4 -> Results.update_result(socket.assigns.result, %{step_four_right: socket.assigns.volume})
+        socket when socket.assigns.current_ear == :left and socket.assigns.step == 5 -> Results.update_result(socket.assigns.result, %{step_five_left: socket.assigns.volume})
+        socket when socket.assigns.current_ear == :right and socket.assigns.step == 5 -> Results.update_result(socket.assigns.result, %{step_five_right: socket.assigns.volume})
+        socket when socket.assigns.current_ear == :left and socket.assigns.step == 6 -> Results.update_result(socket.assigns.result, %{step_six_left: socket.assigns.volume})
+        socket when socket.assigns.current_ear == :right and socket.assigns.step == 6 -> Results.update_result(socket.assigns.result, %{step_six_right: socket.assigns.volume})
+        _ -> "No match"
+
+      end
 
       {:noreply, assign(socket, :result, result)}
   end
 
-  # def handle_event("view_results", _params, socket) do
 
-  # end
 end
