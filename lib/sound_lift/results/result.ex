@@ -36,6 +36,5 @@ defmodule SoundLift.Results.Result do
       :step_six_left,
       :step_six_right
     ])
-
   end
 end
