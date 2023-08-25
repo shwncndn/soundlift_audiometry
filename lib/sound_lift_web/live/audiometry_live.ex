@@ -51,6 +51,7 @@ defmodule SoundLiftWeb.AudiometryLive do
       >
         Save and Continue
       </.button>
+      <.button phx-hook="SoundTest">Play Sound</.button>
     </div>
     """
   end
