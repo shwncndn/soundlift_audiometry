@@ -21,7 +21,7 @@ defmodule SoundLiftWeb.AudiometryLive do
     </h1>
     <h1 id="current-volume" class="text-4xl py-8">Volume: <%= @volume %></h1>
     <h1 id="current-step" class="text-4xl py-8">Step <%= @step %></h1>
-    <p class="text-sm py-8">Step <%= Kernel.inspect(@result) %></p>
+    <p class="text-md py-8">Step <%= Kernel.inspect(@result) %></p>
     <div class="flex flex-col items-center">
       <.button
         id="inc"
@@ -99,7 +99,7 @@ defmodule SoundLiftWeb.AudiometryLive do
       end
 
     {:ok, result} =
-      Results.update_result(IO.inspect(socket.assigns.result), Map.new([{field, socket.assigns.volume}]))
+      Results.update_result(IO.inspect(socket.assigns.result, label: "SOCKET RESULT"), Map.new([{field, socket.assigns.volume}]))
 
     socket =
       cond do

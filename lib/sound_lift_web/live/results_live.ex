@@ -24,13 +24,14 @@ defmodule SoundLiftWeb.ResultsLive do
 
   def render(assigns) do
     ~H"""
-    <div>Test Results:
+    <div>
+    Test Results:
     <%= cond do %>
-    <%= @acc_result > 500 -> %>
+    <% @acc_result < 500 -> %>
     <p>Hearing Loss</p>
-    <%= @acc_result < 500 -> %>
+    <% @acc_result > 500 -> %>
     <p>No Hearing Loss</p>
-    <%= true -> %>
+    <% true -> %>
     <p>default case</p>
     <% end %>
        </div>
