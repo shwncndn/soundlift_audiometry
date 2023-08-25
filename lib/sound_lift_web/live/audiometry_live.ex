@@ -120,4 +120,14 @@ defmodule SoundLiftWeb.AudiometryLive do
 
     {:noreply, assign(socket, result: result, volume: 4)}
   end
+
+  # def handle_info(msg, socket) do
+  #   case socket.assigns.step do
+  #     1 ->
+  #     2 ->
+  #     3 ->
+  #     4 ->
+  #     5 ->
+  #     6 ->
+  #   end
 end
