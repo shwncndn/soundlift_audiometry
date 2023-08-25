@@ -43,7 +43,6 @@ defmodule SoundLiftWeb.AudiometryLive do
         phx-click="dec"
       >
       </.button>
-
       <.button
         id="save-and-continue"
         class="my-4 bg-yellow-400 hover:bg-yellow-300 rounded-full"
@@ -51,7 +50,7 @@ defmodule SoundLiftWeb.AudiometryLive do
       >
         Save and Continue
       </.button>
-      <.button phx-hook="SoundTest">Play Sound</.button>
+      <.button phx-hook="ToggleSound">Start | Stop</.button>
     </div>
     """
   end

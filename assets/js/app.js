@@ -26,13 +26,23 @@ import * as Tone from '../vendor/tone';
 const synth = new Tone.Synth().toDestination();
 
 let Hooks = {
-    SoundTest: {
+    
+    ToggleSound: {
         mounted() {
-            this.el.addEventListener("click", (event) => {
-                synth.triggerAttackRelease("C4", "8n");  
-            })
+            this.soundOn = false;
+            
+            this.el.addEventListener("click", () => {
+                if (this.soundOn) {
+                    synth.triggerRelease();
+                    this.soundOn = false;
+                } else {
+                synth.triggerAttack("C4");  
+                this.soundOn = true;
+                }
+            });
         }
     }
+    
 }
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
