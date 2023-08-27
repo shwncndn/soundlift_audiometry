@@ -4,6 +4,9 @@ defmodule SoundLiftWeb.AudiometryLive do
   alias SoundLift.Results
 
   def mount(_params, _session, socket) do
+    if connected?(socket) do
+      Phoenix.PubSub.subscribe(SoundLift.PubSub, "stats")
+    end
     {:ok, result} = Results.create_result()
 
     {:ok,
