@@ -3,9 +3,7 @@ defmodule SoundLiftWeb.AudiometryLive do
 
   alias SoundLift.Results
 
-  @colors %{
-
-  }
+  @colors %{}
   def mount(_params, _session, socket) do
     if connected?(socket) do
       Phoenix.PubSub.subscribe(SoundLift.PubSub, "stats")
@@ -33,7 +31,7 @@ defmodule SoundLiftWeb.AudiometryLive do
       <.button
         id="inc"
         class="rounded-lg bg-yellow-400 hover:bg-yellow-300
-     py-2 px-1 w-16"
+         py-2 px-1 w-16"
         phx-click="inc"
       >
       </.button>
@@ -45,8 +43,8 @@ defmodule SoundLiftWeb.AudiometryLive do
       <.button
         id="dec"
         class="rounded-lg bg-yellow-400 hover:bg-yellow-300
-      py-2 px-1 w-16
-     "
+          py-2 px-1 w-16
+         "
         phx-click="dec"
       >
       </.button>
@@ -59,11 +57,13 @@ defmodule SoundLiftWeb.AudiometryLive do
       </.button>
       <.button phx-hook="ToggleSound">Start | Stop</.button>
 
-    <%!-- TODO: cond or if statement for pill color relative to socket.assigns.step --%>
+      <%!-- TODO: cond or if statement for pill color relative to socket.assigns.step --%>
     </div>
     <div id="vol-meter" class="flex flex-col items-center">
-    <div id="7" class="bg-yellow-400 rounded-full w-26 h-4 mt-1"></div>
-    <div id="6" class="bg-yellow-400 rounded-full w-22 h-4 mt-1"></div>
+      <div id="7" class="bg-yellow-400 rounded-full w-26 h-4 mt-1"></div>
+
+      <div id="6" class="bg-yellow-400 rounded-full w-22 h-4 mt-1"></div>
+
       <div id="5" class="bg-yellow-400 rounded-full w-18 h-4 mt-1"></div>
 
       <div id="4" class="bg-yellow-400 rounded-full w-16 h-4 mt-1"></div>
@@ -74,22 +74,32 @@ defmodule SoundLiftWeb.AudiometryLive do
 
       <div id="1" class="bg-yellow-400 rounded-full w-4 h-4 mt-1"></div>
     </div>
-    <div>
-    <element class="flex items-center w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
-  1</element>
-
-  <element class="flex items-center w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">2</element>
-
-  <element class="flex items-center w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">3</element>
-
-  <element class="flex items-center w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">4</element>
-  <element class="flex items-center w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">5</element>
-
-<element class="flex items-center w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">6</element>
+    <div class="inline-flex">
+      <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+        1
+      </element>
+      <element class="bg-yellow-400 rounded-full w-4 h-4 mt-1"></element>
+      <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+        2
+      </element>
+      <element class="bg-yellow-400 rounded-full w-4 h-4 mt-1"></element>
+      <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+        3
+      </element>
+      <element class="bg-yellow-400 rounded-full w-4 h-4 mt-1"></element>
+      <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+        4
+      </element>
+      <element class="bg-yellow-400 rounded-full w-4 h-4 mt-1"></element>
+      <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+        5
+      </element>
+      <element class="bg-yellow-400 rounded-full w-4 h-4 mt-1"></element>
+      <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+        6
+      </element>
     </div>
-
-
-"""
+    """
   end
 
   # TODO how to limit count w/o crashing when limit reached?
