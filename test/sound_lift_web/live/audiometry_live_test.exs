@@ -73,10 +73,9 @@ defmodule SoundLiftWeb.AudiometryLiveTest do
       assert element(view, "#current-ear") |> render() =~ "Right"
       assert element(view, "#current-step") |> render() =~ "6"
 
-
       element(view, "#save-and-continue") |> render_click()
-     {path, _flash} = assert_redirect(view)
-     assert "/results/" <> id = path
+      {path, _flash} = assert_redirect(view)
+      assert "/results/" <> id = path
     end
   end
 end

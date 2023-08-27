@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
     <.live_title suffix=" · Phoenix Framework">
-      <%= assigns[:page_title] || "PicChat" %>
+      <%= assigns[:page_title] || "SoundLift" %>
     </.live_title>
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
@@ -13,22 +13,14 @@
   </head>
   <body class="bg-gradient-to-t from-neutral-900 to-blue-600 antialiased">
     <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
-      <li>
-        <.link
-          href={~p"/messages"}
-          class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-        >
-          Messages
-        </.link>
-      </li>
       <%= if @current_user do %>
-        <li class="text-[0.8125rem] leading-6 text-zinc-900">
+        <li class="text-[0.8125rem] leading-6 text-slate-50">
           <%= @current_user.email %>
         </li>
         <li>
           <.link
             href={~p"/users/settings"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+            class="text-[0.8125rem] leading-6 text-slate-50 font-semibold hover:text-zinc-700"
           >
             Settings
           </.link>
@@ -37,7 +29,7 @@
           <.link
             href={~p"/users/log_out"}
             method="delete"
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+            class="text-[0.8125rem] leading-6 text-slate-50 font-semibold hover:text-zinc-700"
           >
             Log out
           </.link>
@@ -46,7 +38,7 @@
         <li>
           <.link
             href={~p"/users/register"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+            class="text-[0.8125rem] leading-6 text-slate-50 font-semibold hover:text-zinc-700"
           >
             Register
           </.link>
@@ -54,7 +46,7 @@
         <li>
           <.link
             href={~p"/users/log_in"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+            class="text-[0.8125rem] leading-6 text-slate-50 font-semibold hover:text-zinc-700"
           >
             Log in
           </.link>

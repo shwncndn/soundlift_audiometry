@@ -3,10 +3,14 @@ defmodule SoundLiftWeb.AudiometryLive do
 
   alias SoundLift.Results
 
+  @colors %{
+
+  }
   def mount(_params, _session, socket) do
     if connected?(socket) do
       Phoenix.PubSub.subscribe(SoundLift.PubSub, "stats")
     end
+
     {:ok, result} = Results.create_result()
 
     {:ok,
@@ -19,13 +23,13 @@ defmodule SoundLiftWeb.AudiometryLive do
 
   def render(assigns) do
     ~H"""
-    <h1 id="current-ear" class="text-4xl py-8">
+    <h1 id="current-ear" class="text-4xl text-slate-50 py-8">
       <%= String.capitalize(Atom.to_string(@current_ear)) %> Ear
     </h1>
-    <h1 id="current-volume" class="text-4xl py-8">Volume: <%= @volume %></h1>
-    <h1 id="current-step" class="text-4xl py-8">Step <%= @step %></h1>
-    <p class="text-md py-8">Step <%= Kernel.inspect(@result) %></p>
-    <div class="flex flex-col items-center">
+    <h1 id="current-volume" class="text-4xl text-slate-50 py-8 ">Volume: <%= @volume %></h1>
+    <h1 id="current-step" class="text-4xl text-slate-50 py-8">Step <%= @step %></h1>
+    <p class="text-md text-slate-50 py-8">Step <%= Kernel.inspect(@result) %></p>
+    <div class="flex flex-col text-slate-50 items-center">
       <.button
         id="inc"
         class="rounded-lg bg-yellow-400 hover:bg-yellow-300
@@ -36,7 +40,7 @@ defmodule SoundLiftWeb.AudiometryLive do
       <p>Louder</p>
     </div>
     <div class="border-b border-t border-gray-300"></div>
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col text-slate-50 items-center">
       <p>Softer</p>
       <.button
         id="dec"
@@ -54,8 +58,38 @@ defmodule SoundLiftWeb.AudiometryLive do
         Save and Continue
       </.button>
       <.button phx-hook="ToggleSound">Start | Stop</.button>
+
+    <%!-- TODO: cond or if statement for pill color relative to socket.assigns.step --%>
     </div>
-    """
+    <div id="vol-meter" class="flex flex-col items-center">
+    <div id="7" class="bg-yellow-400 rounded-full w-26 h-4 mt-1"></div>
+    <div id="6" class="bg-yellow-400 rounded-full w-22 h-4 mt-1"></div>
+      <div id="5" class="bg-yellow-400 rounded-full w-18 h-4 mt-1"></div>
+
+      <div id="4" class="bg-yellow-400 rounded-full w-16 h-4 mt-1"></div>
+
+      <div id="3" class="bg-yellow-400 rounded-full w-12 h-4 mt-1"></div>
+
+      <div id="2" class="bg-yellow-400 rounded-full w-8 h-4 mt-1"></div>
+
+      <div id="1" class="bg-yellow-400 rounded-full w-4 h-4 mt-1"></div>
+    </div>
+    <div>
+    <element class="flex items-center w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+  1</element>
+
+  <element class="flex items-center w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">2</element>
+
+  <element class="flex items-center w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">3</element>
+
+  <element class="flex items-center w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">4</element>
+  <element class="flex items-center w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">5</element>
+
+<element class="flex items-center w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">6</element>
+    </div>
+
+
+"""
   end
 
   # TODO how to limit count w/o crashing when limit reached?
@@ -102,7 +136,10 @@ defmodule SoundLiftWeb.AudiometryLive do
       end
 
     {:ok, result} =
-      Results.update_result(IO.inspect(socket.assigns.result, label: "SOCKET RESULT"), Map.new([{field, socket.assigns.volume}]))
+      Results.update_result(
+        IO.inspect(socket.assigns.result, label: "SOCKET RESULT"),
+        Map.new([{field, socket.assigns.volume}])
+      )
 
     socket =
       cond do

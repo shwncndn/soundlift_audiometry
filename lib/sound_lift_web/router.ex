@@ -20,7 +20,6 @@ defmodule SoundLiftWeb.Router do
   scope "/", SoundLiftWeb do
     pipe_through :browser
 
-
     live "/audiometry", AudiometryLive
     live "/results/:id", ResultsLive
     get "/", PageController, :home
