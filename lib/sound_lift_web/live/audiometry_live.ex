@@ -27,44 +27,44 @@ defmodule SoundLiftWeb.AudiometryLive do
     <h1 id="current-step" class="text-4xl text-slate-50 py-8">Step <%= @step %></h1>
     <p class="text-md text-slate-50 py-8">Step <%= Kernel.inspect(@result) %></p>
     <div class="flex justify-around flex-col text-slate-50 items-center">
-      <.button
+      <button
         id="inc"
         class="rounded-lg bg-yellow-400 hover:bg-yellow-300
          py-2 px-1 w-16"
         phx-click="inc"
       >
-      </.button>
+      </button>
       <p>Louder</p>
     </div>
     <div class="border-b border-t w-24 mx-auto border-gray-300"></div>
     <div class="flex justify-around flex-col text-slate-50 items-center">
       <p>Softer</p>
-      <.button
+      <button
         id="dec"
         class="rounded-lg bg-yellow-400 hover:bg-yellow-300
           py-2 px-1 w-16
          "
         phx-click="dec"
       >
-      </.button>
+      </button>
       <div>
-        <.button
+        <button
           id="save-and-continue"
           class="my-4 bg-yellow-400 hover:bg-yellow-300 rounded-full"
           phx-click="save_and_continue"
         >
           Save and Continue
-        </.button>
-        <.button phx-hook="ToggleSound" data-volume={@volume}>Start | Stop</.button>
+        </button>
+        <button id="toggle-sound" phx-hook="ToggleSound" data-volume={@volume}>Start | Stop</button>
       </div>
       <%!-- TODO: cond or if statement for pill color relative to socket.assigns.step --%>
     </div>
-    <div id="vol-meter" class="flex justify-around flex-col items-center">
-      <div id="7" class="bg-yellow-400 rounded-full mb-8 w-26 h-4 mt-1"></div>
+    <div id="vol-meter" class="flex flex-col items-center">
+      <div id="7" class="bg-yellow-400 rounded-full w-28 h-4 mt-1"></div>
 
-      <div id="6" class="bg-yellow-400 rounded-full w-22 h-4 mt-1"></div>
+      <div id="6" class="bg-yellow-400 rounded-full w-24 h-4 mt-1"></div>
 
-      <div id="5" class="bg-yellow-400 rounded-full w-18 h-4 mt-1"></div>
+      <div id="5" class="bg-yellow-400 rounded-full w-20 h-4 mt-1"></div>
 
       <div id="4" class="bg-yellow-400 rounded-full w-16 h-4 mt-1"></div>
 
