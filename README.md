@@ -18,6 +18,7 @@ TestResults {
 ResultsLog {
     integer left_ear
     integer right_ear
+    integer total_score
     date published_on
 }
 User ||--O{ TestResults: ""
