@@ -17,7 +17,6 @@ defmodule SoundLift.Results.Result do
     field :step_six_right, :integer
     belongs_to :user, SoundLift.Accounts.User
 
-
     timestamps()
   end
 
@@ -38,6 +37,7 @@ defmodule SoundLift.Results.Result do
       :step_six_left,
       :step_six_right
     ])
+
     # |> validate_required([:user_id])
   end
 end

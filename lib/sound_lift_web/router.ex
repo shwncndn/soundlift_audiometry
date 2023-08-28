@@ -19,10 +19,11 @@ defmodule SoundLiftWeb.Router do
 
   scope "/", SoundLiftWeb do
     pipe_through :browser
-    live "/logs", LogLive.Index, :index
+
+    live "/", HomeLive
     live "/audiometry", AudiometryLive
     live "/results/:id", ResultsLive
-    get "/", PageController, :home
+    live "/logs", LogLive.Index, :index
   end
 
   # Other scopes may use custom stacks.

@@ -18,40 +18,87 @@
 // Include phoenix_html to handle method=PUT/DELETE in forms and buttons.
 import "phoenix_html"
 // Establish Phoenix Socket and LiveView configuration.
-import {Socket} from "phoenix"
-import {LiveSocket} from "phoenix_live_view"
+import { Socket } from "phoenix"
+import { LiveSocket } from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 import * as Tone from '../vendor/tone';
 
 const synth = new Tone.Synth().toDestination();
 
+
+
 let Hooks = {
-    
+
     ToggleSound: {
         mounted() {
             this.soundOn = false;
-            
             this.el.addEventListener("click", () => {
                 if (this.soundOn) {
                     synth.triggerRelease();
                     this.soundOn = false;
                 } else {
-                synth.triggerAttack("C4");  
-                this.soundOn = true;
+                    console.log(typeof this.el.dataset.volume)
+                    switch (this.el.dataset.volume) {
+                        case "1":
+                            synth.volume.value = -28;
+                            console.log("1")
+
+                            break
+                        case "2":
+                            synth.volume.value = -24;
+                            console.log("2")
+
+                            break
+                        case "3":
+                            console.log("default")
+                            synth.volume.value = -20;
+
+                            break
+                        case "4":
+                            console.log("default")
+                            synth.volume.value = -16;
+                            
+                            break
+
+                            case "5":
+                            console.log("default")
+                            synth.volume.value = -12;
+                            
+                            break
+
+                            case "6":
+                            console.log("default")
+                            synth.volume.value = -8;
+                            
+                            break
+
+                            case "7":
+                            console.log("default")
+                            synth.volume.value = -4;
+                            
+                            break
+
+                    }
+
+
+
+
+                    synth.triggerAttack("C4");
+                    this.soundOn = true;
                 }
             });
         }
     }
-    
+
 }
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-let liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks, params: {_csrf_token: csrfToken} })
+let liveSocket = new LiveSocket("/live", Socket, { hooks: Hooks, params: { _csrf_token: csrfToken } })
 
 
 
 // Show progress bar on live navigation and form submits
-topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
+topbar.config({ barColors: { 0: "#29d" }, shadowColor: "rgba(0, 0, 0, .3)" })
 window.addEventListener("phx:page-loading-start", _info => topbar.show(300))
 window.addEventListener("phx:page-loading-stop", _info => topbar.hide())
 
