@@ -3,7 +3,7 @@ defmodule SoundLiftWeb.AudiometryLive do
 
   alias SoundLift.Results
 
-  @colors %{}
+
   def mount(_params, _session, socket) do
     if connected?(socket) do
       Phoenix.PubSub.subscribe(SoundLift.PubSub, "stats")
@@ -27,7 +27,7 @@ defmodule SoundLiftWeb.AudiometryLive do
     <h1 id="current-volume" class="text-4xl text-slate-50 py-8 ">Volume: <%= @volume %></h1>
     <h1 id="current-step" class="text-4xl text-slate-50 py-8">Step <%= @step %></h1>
     <p class="text-md text-slate-50 py-8">Step <%= Kernel.inspect(@result) %></p>
-    <div class="flex flex-col text-slate-50 items-center">
+    <div class="flex justify-around flex-col text-slate-50 items-center">
       <.button
         id="inc"
         class="rounded-lg bg-yellow-400 hover:bg-yellow-300
@@ -37,8 +37,8 @@ defmodule SoundLiftWeb.AudiometryLive do
       </.button>
       <p>Louder</p>
     </div>
-    <div class="border-b border-t border-gray-300"></div>
-    <div class="flex flex-col text-slate-50 items-center">
+    <div class="border-b border-t w-24 mx-auto border-gray-300"></div>
+    <div class="flex justify-around flex-col text-slate-50 items-center">
       <p>Softer</p>
       <.button
         id="dec"
@@ -48,6 +48,7 @@ defmodule SoundLiftWeb.AudiometryLive do
         phx-click="dec"
       >
       </.button>
+      <div>
       <.button
         id="save-and-continue"
         class="my-4 bg-yellow-400 hover:bg-yellow-300 rounded-full"
@@ -56,11 +57,11 @@ defmodule SoundLiftWeb.AudiometryLive do
         Save and Continue
       </.button>
       <.button phx-hook="ToggleSound">Start | Stop</.button>
-
+      </div>
       <%!-- TODO: cond or if statement for pill color relative to socket.assigns.step --%>
     </div>
-    <div id="vol-meter" class="flex flex-col items-center">
-      <div id="7" class="bg-yellow-400 rounded-full w-26 h-4 mt-1"></div>
+    <div id="vol-meter" class="flex justify-around flex-col items-center">
+      <div id="7" class="bg-yellow-400 rounded-full mb-8 w-26 h-4 mt-1"></div>
 
       <div id="6" class="bg-yellow-400 rounded-full w-22 h-4 mt-1"></div>
 
@@ -72,9 +73,9 @@ defmodule SoundLiftWeb.AudiometryLive do
 
       <div id="2" class="bg-yellow-400 rounded-full w-8 h-4 mt-1"></div>
 
-      <div id="1" class="bg-yellow-400 rounded-full w-4 h-4 mt-1"></div>
+      <div id="1" class="bg-yellow-400 rounded-full mb-8 w-4 h-4 mt-1"></div>
     </div>
-    <div class="inline-flex">
+    <div class="flex justify-between inline-flex flex items-center">
       <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
         1
       </element>
