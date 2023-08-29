@@ -35,7 +35,27 @@ defmodule SoundLift.Results do
       ** (Ecto.NoResultsError)
 
   """
-  def get_result!(id), do: Repo.get!(Result, id)
+  def get_result!(id) do
+    result = Repo.get!(Result, id)
+
+   total_score = Map.take(result, [
+      :step_one_left,
+      :step_one_right,
+      :step_two_left,
+      :step_two_right,
+      :step_three_left,
+      :step_three_right,
+      :step_four_left,
+      :step_four_right,
+      :step_five_left,
+      :step_five_right,
+      :step_six_left,
+      :step_six_right
+    ])
+    |> Map.values()
+    |> Enum.sum()
+    Map.put(result, :total_score, total_score)
+  end
 
   @doc """
   Creates a result.
