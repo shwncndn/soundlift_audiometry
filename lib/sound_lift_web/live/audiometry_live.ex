@@ -20,84 +20,103 @@ defmodule SoundLiftWeb.AudiometryLive do
 
   def render(assigns) do
     ~H"""
-    <h1 id="current-ear" class="text-4xl text-slate-50 py-8">
-      <%= String.capitalize(Atom.to_string(@current_ear)) %> Ear
-    </h1>
-    <h1 id="current-volume" class="text-4xl text-slate-50 py-8 ">Volume: <%= @volume %></h1>
-    <h1 id="current-step" class="text-4xl text-slate-50 py-8">Step <%= @step %></h1>
-    <p class="text-md text-slate-50 py-8">Step <%= Kernel.inspect(@result) %></p>
+    <div class="flex flex-col items-center">
+      <h1 id="current-ear" class="text-5xl text-slate-50 py-8">
+        <%= String.capitalize(Atom.to_string(@current_ear)) %> Ear
+        </h1>
+        <div class="inline-flex">
+        <h1 id="current-step" class="text-2xl text-slate-50 py-2 mr-2">Step <%= @step %></h1>
+        <h1 id="current-volume" class="text-2xl text-slate-50 py-2 ml-2">Volume: <%= @volume %></h1>
+      </div>
+      <div class="inline-flex">
+      <element id="vol-meter" class="flex flex-col items-center">
+        <element id="7" class="bg-yellow-500 rounded-full w-28 h-[1.125rem] mt-1"></element>
+
+        <element id="6" class="bg-yellow-500 rounded-full w-24 h-[1.125rem] mt-1"></element>
+
+        <element id="5" class="bg-yellow-500 rounded-full w-20 h-[1.125rem] mt-1"></element>
+
+        <element id="4" class="bg-yellow-500 rounded-full w-16 h-[1.125rem] mt-1"></element>
+
+        <element id="3" class="bg-yellow-500 rounded-full w-12 h-[1.125rem] mt-1"></element>
+
+        <element id="2" class="bg-yellow-500 rounded-full w-8 h-[1.125rem] mt-1"></element>
+
+        <element id="1" class="bg-yellow-500 rounded-full w-4 h-[1.125rem] mt-1"></element>
+      </element>
+      </div>
+
+      <%!-- <p class="text-md text-slate-50 py-8">Step <%= Kernel.inspect(@result) %></p> --%>
+    </div>
     <div class="flex justify-around flex-col text-slate-50 items-center">
       <button
         id="inc"
-        class="rounded-lg bg-yellow-400 hover:bg-yellow-300
-         py-2 px-1 w-16"
+        class=" mt-4 w-0 h-0
+  border-l-[25px] border-l-transparent
+  border-b-[25px] border-b-yellow-500
+  border-r-[25px] border-r-transparent"
         phx-click="inc"
       >
       </button>
       <p>Louder</p>
     </div>
-    <div class="border-b border-t w-24 mx-auto border-gray-300"></div>
-    <div class="flex justify-around flex-col text-slate-50 items-center">
+    <div class="border-b w-24 mx-auto border-gray-400"></div>
+    <div class="flex flex-col text-slate-50 items-center">
       <p>Softer</p>
       <button
         id="dec"
-        class="rounded-lg bg-yellow-400 hover:bg-yellow-300
-          py-2 px-1 w-16
-         "
+        class="w-0 h-0
+  border-l-[25px] border-l-transparent
+  border-t-[25px] border-t-yellow-500
+  border-r-[25px] border-r-transparent"
         phx-click="dec"
       >
       </button>
+
       <div>
         <button
           id="save-and-continue"
-          class="my-4 bg-yellow-400 hover:bg-yellow-300 rounded-full"
+          class="w-28 h-12 bg-yellow-500 hover:bg-yellow-300 rounded-full text-blue-900"
           phx-click="save_and_continue"
         >
           Save and Continue
         </button>
-        <button id="toggle-sound" phx-hook="ToggleSound" data-volume={@volume}>Start | Stop</button>
+        <button
+          id="toggle-sound"
+          phx-hook="ToggleSound"
+          data-volume={@volume}
+          class="bg-yellow-500 hover:bg-yellow-300 text-blue-900 rounded-full h-10 mt-4 mb-8 w-28"
+        >
+          Start | Stop
+        </button>
       </div>
       <%!-- TODO: cond or if statement for pill color relative to socket.assigns.step --%>
-    </div>
-    <div id="vol-meter" class="flex flex-col items-center">
-      <div id="7" class="bg-yellow-400 rounded-full w-28 h-4 mt-1"></div>
+      <div class="flex justify-between inline-flex flex items-center">
+        <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+          1
+        </element>
+        <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
+        <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+          2
+        </element>
+        <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
+        <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+          3
+        </element>
+        <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
+        <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+          4
+        </element>
+        <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
+        <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+          5
+        </element>
+        <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
+        <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+          6
+        </element>
+      </div>
 
-      <div id="6" class="bg-yellow-400 rounded-full w-24 h-4 mt-1"></div>
-
-      <div id="5" class="bg-yellow-400 rounded-full w-20 h-4 mt-1"></div>
-
-      <div id="4" class="bg-yellow-400 rounded-full w-16 h-4 mt-1"></div>
-
-      <div id="3" class="bg-yellow-400 rounded-full w-12 h-4 mt-1"></div>
-
-      <div id="2" class="bg-yellow-400 rounded-full w-8 h-4 mt-1"></div>
-
-      <div id="1" class="bg-yellow-400 rounded-full mb-8 w-4 h-4 mt-1"></div>
-    </div>
-    <div class="flex justify-between inline-flex flex items-center">
-      <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
-        1
-      </element>
-      <element class="bg-yellow-400 rounded-full w-4 h-4 mt-1"></element>
-      <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
-        2
-      </element>
-      <element class="bg-yellow-400 rounded-full w-4 h-4 mt-1"></element>
-      <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
-        3
-      </element>
-      <element class="bg-yellow-400 rounded-full w-4 h-4 mt-1"></element>
-      <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
-        4
-      </element>
-      <element class="bg-yellow-400 rounded-full w-4 h-4 mt-1"></element>
-      <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
-        5
-      </element>
-      <element class="bg-yellow-400 rounded-full w-4 h-4 mt-1"></element>
-      <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
-        6
-      </element>
     </div>
     """
   end
