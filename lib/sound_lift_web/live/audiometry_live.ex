@@ -25,24 +25,52 @@ defmodule SoundLiftWeb.AudiometryLive do
         <%= String.capitalize(Atom.to_string(@current_ear)) %> Ear
       </h1>
       <div class="inline-flex">
-        <h1 id="current-step" class="text-2xl text-slate-50 py-2 mr-2">Step <%= @step %></h1>
+        <%!-- <h1 id="current-step" class="text-2xl text-slate-50 py-2 mr-2">Step <%= @step %></h1> --%>
         <h1 id="current-volume" class="text-2xl text-slate-50 py-2 ml-2">Volume: <%= @volume %></h1>
       </div>
       <div class="inline-flex">
         <element id="vol-meter" class="flex flex-col items-center">
-          <element id="7" class="bg-yellow-500 rounded-full w-28 h-[1.125rem] mt-1"></element>
+          <element
+            id="7"
+            class={"bg-yellow-500 rounded-full border-2 border-yellow-500 w-28 h-[1.125rem] mt-1 #{if @volume == 7, do: "bg-yellow-500", else: "bg-stone-300"}"}
+          >
+          </element>
 
-          <element id="6" class="bg-yellow-500 rounded-full w-24 h-[1.125rem] mt-1"></element>
+          <element
+            id="6"
+            class={"bg-yellow-500 rounded-full border-2 border-yellow-500 w-24 h-[1.125rem] mt-1 #{if @volume >= 6, do: "bg-yellow-500", else: "bg-stone-300"}"}
+          >
+          </element>
 
-          <element id="5" class="bg-yellow-500 rounded-full w-20 h-[1.125rem] mt-1"></element>
+          <element
+            id="5"
+            class={"bg-yellow-500 rounded-full border-2 border-yellow-500 w-20 h-[1.125rem] mt-1 #{if @volume >= 5, do: "bg-yellow-500", else: "bg-stone-300"}"}
+          >
+          </element>
 
-          <element id="4" class="bg-yellow-500 rounded-full w-16 h-[1.125rem] mt-1"></element>
+          <element
+            id="4"
+            class={"bg-yellow-500 rounded-full border-2 border-yellow-500 w-16 h-[1.125rem] mt-1 #{if @volume >= 4, do: "bg-yellow-500", else: "bg-stone-300"}"}
+          >
+          </element>
 
-          <element id="3" class="bg-yellow-500 rounded-full w-12 h-[1.125rem] mt-1"></element>
+          <element
+            id="3"
+            class={"bg-yellow-500 rounded-full border-2 border-yellow-500 w-12 h-[1.125rem] mt-1 #{if @volume >= 3, do: "bg-yellow-500", else: "bg-stone-300"}"}
+          >
+          </element>
 
-          <element id="2" class="bg-yellow-500 rounded-full w-8 h-[1.125rem] mt-1"></element>
+          <element
+            id="2"
+            class={"bg-yellow-500 rounded-full border-2 border-yellow-500 w-8 h-[1.125rem] mt-1 #{if @volume >= 2, do: "bg-yellow-500", else: "bg-stone-300"}"}
+          >
+          </element>
 
-          <element id="1" class="bg-yellow-500 rounded-full w-4 h-[1.125rem] mt-1"></element>
+          <element
+            id="1"
+            class={"bg-yellow-500 rounded-full border-2  border-yellow-500 w-4 h-[1.125rem] mt-1 #{if @volume >= 1, do: "bg-yellow-500", else: "bg-stone-300"}"}
+          >
+          </element>
         </element>
       </div>
 
@@ -92,7 +120,7 @@ defmodule SoundLiftWeb.AudiometryLive do
       </div>
       <%!-- TODO: cond or if statement for pill color relative to socket.assigns.step --%>
       <div class="flex justify-between inline-flex flex items-center">
-        <element class={"flex items-center mx-2 border-2 bg-opacity-0 justify-center rounded-full #{if @step == 1, do: "border-yellow-500 w-24 h-24 text-6xl", else: "w-20 h-20 border-slate-500 text-5xl text-slate-500"}" }>
+        <element class={"flex items-center mx-2 border-2 bg-opacity-0 justify-center rounded-full #{if @step == 1, do: "border-yellow-500 w-24 h-24 text-6xl", else: "w-20 h-20 border-slate-500 text-5xl text-slate-500"}"}>
           1
         </element>
         <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
