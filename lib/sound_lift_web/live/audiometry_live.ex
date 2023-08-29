@@ -23,27 +23,27 @@ defmodule SoundLiftWeb.AudiometryLive do
     <div class="flex flex-col items-center">
       <h1 id="current-ear" class="text-5xl text-slate-50 py-8">
         <%= String.capitalize(Atom.to_string(@current_ear)) %> Ear
-        </h1>
-        <div class="inline-flex">
+      </h1>
+      <div class="inline-flex">
         <h1 id="current-step" class="text-2xl text-slate-50 py-2 mr-2">Step <%= @step %></h1>
         <h1 id="current-volume" class="text-2xl text-slate-50 py-2 ml-2">Volume: <%= @volume %></h1>
       </div>
       <div class="inline-flex">
-      <element id="vol-meter" class="flex flex-col items-center">
-        <element id="7" class="bg-yellow-500 rounded-full w-28 h-[1.125rem] mt-1"></element>
+        <element id="vol-meter" class="flex flex-col items-center">
+          <element id="7" class="bg-yellow-500 rounded-full w-28 h-[1.125rem] mt-1"></element>
 
-        <element id="6" class="bg-yellow-500 rounded-full w-24 h-[1.125rem] mt-1"></element>
+          <element id="6" class="bg-yellow-500 rounded-full w-24 h-[1.125rem] mt-1"></element>
 
-        <element id="5" class="bg-yellow-500 rounded-full w-20 h-[1.125rem] mt-1"></element>
+          <element id="5" class="bg-yellow-500 rounded-full w-20 h-[1.125rem] mt-1"></element>
 
-        <element id="4" class="bg-yellow-500 rounded-full w-16 h-[1.125rem] mt-1"></element>
+          <element id="4" class="bg-yellow-500 rounded-full w-16 h-[1.125rem] mt-1"></element>
 
-        <element id="3" class="bg-yellow-500 rounded-full w-12 h-[1.125rem] mt-1"></element>
+          <element id="3" class="bg-yellow-500 rounded-full w-12 h-[1.125rem] mt-1"></element>
 
-        <element id="2" class="bg-yellow-500 rounded-full w-8 h-[1.125rem] mt-1"></element>
+          <element id="2" class="bg-yellow-500 rounded-full w-8 h-[1.125rem] mt-1"></element>
 
-        <element id="1" class="bg-yellow-500 rounded-full w-4 h-[1.125rem] mt-1"></element>
-      </element>
+          <element id="1" class="bg-yellow-500 rounded-full w-4 h-[1.125rem] mt-1"></element>
+        </element>
       </div>
 
       <%!-- <p class="text-md text-slate-50 py-8">Step <%= Kernel.inspect(@result) %></p> --%>
@@ -52,9 +52,9 @@ defmodule SoundLiftWeb.AudiometryLive do
       <button
         id="inc"
         class=" mt-4 w-0 h-0
-  border-l-[25px] border-l-transparent
-  border-b-[25px] border-b-yellow-500
-  border-r-[25px] border-r-transparent"
+    border-l-[25px] border-l-transparent
+    border-b-[25px] border-b-yellow-500
+    border-r-[25px] border-r-transparent"
         phx-click="inc"
       >
       </button>
@@ -66,9 +66,9 @@ defmodule SoundLiftWeb.AudiometryLive do
       <button
         id="dec"
         class="w-0 h-0
-  border-l-[25px] border-l-transparent
-  border-t-[25px] border-t-yellow-500
-  border-r-[25px] border-r-transparent"
+    border-l-[25px] border-l-transparent
+    border-t-[25px] border-t-yellow-500
+    border-r-[25px] border-r-transparent"
         phx-click="dec"
       >
       </button>
@@ -116,7 +116,6 @@ defmodule SoundLiftWeb.AudiometryLive do
           6
         </element>
       </div>
-
     </div>
     """
   end

@@ -15,7 +15,10 @@ defmodule SoundLiftWeb.HomeLive do
       </h2>
       <h2 class="flex flex-col items-center text-slate-50">When ready, click the button below.</h2>
 
-      <button phx-click="go-to-page" class="flex flex-col items-center rounded-full text-sm my-8 bg-yellow-400 hover:bg-yellow-300">
+      <button
+        phx-click="go-to-page"
+        class="inline-f items-center rounded-full text-blue-900 text-sm my-8 w-28 h-8 bg-yellow-400 hover:bg-yellow-300"
+      >
         Take the Test!
       </button>
     </body>
@@ -23,6 +26,6 @@ defmodule SoundLiftWeb.HomeLive do
   end
 
   def handle_event("go-to-page", url, socket) do
-{:noreply, push_navigate(socket, to: ~p"/audiometry")}
+    {:noreply, push_navigate(socket, to: ~p"/audiometry")}
   end
 end
