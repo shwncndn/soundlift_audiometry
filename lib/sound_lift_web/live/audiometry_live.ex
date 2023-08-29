@@ -92,27 +92,27 @@ defmodule SoundLiftWeb.AudiometryLive do
       </div>
       <%!-- TODO: cond or if statement for pill color relative to socket.assigns.step --%>
       <div class="flex justify-between inline-flex flex items-center">
-        <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+        <element class={"flex items-center mx-2 border-2 bg-opacity-0 justify-center rounded-full #{if @step == 1, do: "border-yellow-500 w-24 h-24 text-6xl", else: "w-20 h-20 border-slate-500 text-5xl text-slate-500"}" }>
           1
         </element>
         <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
-        <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+        <element class={"flex items-center mx-2 border-2 outline-slate-50 bg-opacity-0 justify-center rounded-full #{if @step == 2, do: "border-yellow-500 w-24 h-24 text-6xl", else: "w-20 h-20 border-slate-500 w-20 h-20 text-5xl text-slate-500"}"}>
           2
         </element>
         <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
-        <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+        <element class={"flex items-center mx-2 w-16 h-16 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full #{if @step == 3, do: "border-yellow-500 w-24 h-24 text-6xl", else: "w-20 h-20 border-slate-500 w-20 h-20 text-5xl text-slate-500"}"}>
           3
         </element>
         <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
-        <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+        <element class={"flex items-center mx-2 w-16 h-16 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full #{if @step == 4, do: "border-yellow-500 w-24 h-24 text-6xl", else: "w-20 h-20 border-slate-500 w-20 h-20 text-5xl text-slate-500"}"}>
           4
         </element>
         <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
-        <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+        <element class={"flex items-center mx-2 w-16 h-16 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full #{if @step == 5, do: "border-yellow-500 w-24 h-24 text-6xl", else: "w-20 h-20 border-slate-500 w-20 h-20 text-5xl text-slate-500"}"}>
           5
         </element>
         <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
-        <element class="flex items-center mx-2 w-8 h-8 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full">
+        <element class={"flex items-center mx-2 w-16 h-16 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full #{if @step == 6, do: "border-yellow-500 w-24 h-24 text-6xl", else: "w-20 h-20 border-slate-500 w-20 h-20 text-5xl text-slate-500"}"}>
           6
         </element>
       </div>

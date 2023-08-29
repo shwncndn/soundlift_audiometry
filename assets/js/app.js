@@ -30,6 +30,51 @@ const synth = new Tone.Synth().toDestination();
 let Hooks = {
 
     ToggleSound: {
+        updated() { 
+            switch (this.el.dataset.volume) {
+                case "1":
+                    synth.volume.value = -28;
+                    console.log("1")
+
+                    break
+                case "2":
+                    synth.volume.value = -24;
+                    console.log("2")
+
+                    break
+                case "3":
+                    console.log("default")
+                    synth.volume.value = -20;
+
+                    break
+                case "4":
+                    console.log("default")
+                    synth.volume.value = -16;
+                    
+                    break
+
+                    case "5":
+                    console.log("default")
+                    synth.volume.value = -12;
+                    
+                    break
+
+                    case "6":
+                    console.log("default")
+                    synth.volume.value = -8;
+                    
+                    break
+
+                    case "7":
+                    console.log("default")
+                    synth.volume.value = -4;
+                    
+                    break
+
+            }
+
+        console.log("log call")
+        },
         mounted() {
             this.soundOn = false;
             this.el.addEventListener("click", () => {
@@ -38,48 +83,7 @@ let Hooks = {
                     this.soundOn = false;
                 } else {
                     console.log(typeof this.el.dataset.volume)
-                    switch (this.el.dataset.volume) {
-                        case "1":
-                            synth.volume.value = -28;
-                            console.log("1")
-
-                            break
-                        case "2":
-                            synth.volume.value = -24;
-                            console.log("2")
-
-                            break
-                        case "3":
-                            console.log("default")
-                            synth.volume.value = -20;
-
-                            break
-                        case "4":
-                            console.log("default")
-                            synth.volume.value = -16;
-                            
-                            break
-
-                            case "5":
-                            console.log("default")
-                            synth.volume.value = -12;
-                            
-                            break
-
-                            case "6":
-                            console.log("default")
-                            synth.volume.value = -8;
-                            
-                            break
-
-                            case "7":
-                            console.log("default")
-                            synth.volume.value = -4;
-                            
-                            break
-
-                    }
-
+                    
 
 
 

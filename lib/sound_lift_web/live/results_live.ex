@@ -20,9 +20,7 @@ defmodule SoundLiftWeb.ResultsLive do
 
     {:ok,
      socket
-     |> assign(:result, result)
-  }
-
+     |> assign(:result, result)}
   end
 
   def render(assigns) do

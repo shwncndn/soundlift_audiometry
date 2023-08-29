@@ -24,6 +24,7 @@ defmodule SoundLift.Results.Result do
   @doc false
   def changeset(result, attrs) do
     IO.inspect(attrs)
+
     result
     |> cast(attrs, [
       :step_one_left,
