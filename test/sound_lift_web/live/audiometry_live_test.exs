@@ -3,6 +3,12 @@ defmodule SoundLiftWeb.AudiometryLiveTest do
   doctest SoundLiftWeb.AudiometryLive
   alias SoundLiftWeb.AudiometryLive
   import Phoenix.LiveViewTest
+  import SoundLift.AccountsFixtures
+
+  test "mount/1", %{conn: conn} do
+    user = user_fixture(username: "MyUser")
+    {:ok, view, _html} = conn |> log_in_user(user) |> live("/audiometry")
+  end
 
   describe "Volume control" do
     test "displays current volume", %{conn: conn} do

@@ -23,7 +23,7 @@ defmodule SoundLift.Results.Result do
 
   @doc false
   def changeset(result, attrs) do
-    IO.inspect(attrs)
+    IO.inspect(attrs, label: "attributes")
 
     result
     |> cast(attrs, [
@@ -41,8 +41,7 @@ defmodule SoundLift.Results.Result do
       :step_six_right,
       :user_id
     ])
-    # |> validate_required([:user_id])
-    |> foreign_key_constraint(:user_id)
+    |> validate_required([:user_id])
   end
 
   # defp calculate_total_score(changeset) do

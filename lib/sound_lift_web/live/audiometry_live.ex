@@ -3,12 +3,9 @@ defmodule SoundLiftWeb.AudiometryLive do
 
   alias SoundLift.Results
 
-  def mount(_params, _session, socket) do
-    if connected?(socket) do
-      Phoenix.PubSub.subscribe(SoundLift.PubSub, "stats")
-    end
-
-    {:ok, result} = Results.create_result()
+  def mount(_params, session, socket) do
+  
+    {:ok, result} = Results.create_result(%{user_id: socket.assigns.current_user.id})
 
     {:ok,
      socket
@@ -102,12 +99,11 @@ defmodule SoundLiftWeb.AudiometryLive do
       </button>
 
       <div>
-      <button
+        <button
           id="toggle-sound"
           phx-hook="ToggleSound"
           data-volume={@volume}
           class="bg-slyellow hover:bg-yellow-300 text-blue-900 rounded-full h-10 mt-4 mb-8 w-[120px] font-semibold"
-
         >
           Start | Stop
         </button>
@@ -118,7 +114,6 @@ defmodule SoundLiftWeb.AudiometryLive do
         >
           Save and Continue
         </button>
-
       </div>
       <%!-- TODO: cond or if statement for pill color relative to socket.assigns.step --%>
       <div class="flex justify-between inline-flex flex items-center">
@@ -146,9 +141,7 @@ defmodule SoundLiftWeb.AudiometryLive do
           6
         </element>
       </div>
-      <div class="flex justify-between inline-flex flex items-center">
-
-      </div>
+      <div class="flex justify-between inline-flex flex items-center"></div>
     </div>
     """
   end

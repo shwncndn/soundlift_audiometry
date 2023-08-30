@@ -3,7 +3,7 @@ defmodule SoundLift.Repo.Migrations.AddUserIdToResults do
 
   def change do
     alter table(:results) do
-      add :user_id, references(:users, on_delete: :delete_all)
+      add :user_id, references(:users, on_delete: :delete_all), null: false
     end
 
     create index(:results, [:user_id])

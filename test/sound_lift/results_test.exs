@@ -7,6 +7,7 @@ defmodule SoundLift.ResultsTest do
     alias SoundLift.Results.Result
 
     import SoundLift.ResultsFixtures
+    import SoundLift.AccountsFixtures
 
     @invalid_attrs %{
       step_one_left: nil,
@@ -34,6 +35,7 @@ defmodule SoundLift.ResultsTest do
     end
 
     test "create_result/1 with valid data creates a result" do
+      user = user_fixture(username: "MyUser")
       valid_attrs = %{
         step_one_left: 42,
         step_one_right: 42,
@@ -46,7 +48,8 @@ defmodule SoundLift.ResultsTest do
         step_five_left: 42,
         step_five_right: 42,
         step_six_left: 42,
-        step_six_right: 42
+        step_six_right: 42,
+        user_id: user.id
       }
 
       assert {:ok, %Result{} = result} = Results.create_result(valid_attrs)

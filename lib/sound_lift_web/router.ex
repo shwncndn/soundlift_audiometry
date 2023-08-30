@@ -18,12 +18,19 @@ defmodule SoundLiftWeb.Router do
   end
 
   scope "/", SoundLiftWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    live_session :app_requires_authenticated_user,
+      on_mount: [{SoundLiftWeb.UserAuth, :ensure_authenticated}] do
+      live "/audiometry", AudiometryLive
+      live "/results/:id", ResultsLive
+    end
+  end
+
+  scope "/", SoundLiftWeb do
     pipe_through :browser
 
     live "/", HomeLive
-    live "/audiometry", AudiometryLive
-    live "/results/:id", ResultsLive
-    live "/logs", LogLive.Index, :index
   end
 
   # Other scopes may use custom stacks.

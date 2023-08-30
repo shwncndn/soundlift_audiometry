@@ -10,6 +10,13 @@ defmodule SoundLift.Accounts do
 
   ## Database getters
 
+  def get_total_users do
+    Repo.one(
+      from u in User,
+      select: count(u.id)
+    )
+  end
+
   @doc """
   Gets a user by email.
 
