@@ -102,21 +102,23 @@ defmodule SoundLiftWeb.AudiometryLive do
       </button>
 
       <div>
+      <button
+          id="toggle-sound"
+          phx-hook="ToggleSound"
+          data-volume={@volume}
+          class="bg-slyellow hover:bg-yellow-300 text-blue-900 rounded-full h-10 mt-4 mb-8 w-[120px] font-semibold"
+
+        >
+          Start | Stop
+        </button>
         <button
           id="save-and-continue"
-          class="w-28 h-12 bg-slyellow hover:bg-yellow-300 rounded-full text-blue-900 font-semibold"
+          class="w-44 h-10 bg-transparent border-2 border-slyellow hover:bg-yellow-300/40 rounded-full text-slate-50 font-semibold"
           phx-click="save_and_continue"
         >
           Save and Continue
         </button>
-        <button
-          id="toggle-sound"
-          phx-hook="ToggleSound"
-          data-volume={@volume}
-          class="bg-slyellow hover:bg-yellow-300 text-blue-900 rounded-full h-10 mt-4 mb-8 w-28 font-semibold"
-        >
-          Start | Stop
-        </button>
+
       </div>
       <%!-- TODO: cond or if statement for pill color relative to socket.assigns.step --%>
       <div class="flex justify-between inline-flex flex items-center">
