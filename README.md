@@ -13,6 +13,7 @@ User {
 TestResults {
     integer left_ear
     integer right_ear
+    integer total_score
     naive_datetime published_on  
 }
 
