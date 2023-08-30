@@ -26,49 +26,49 @@ defmodule SoundLiftWeb.AudiometryLive do
       </h1>
       <div class="inline-flex">
         <%!-- <h1 id="current-step" class="text-2xl text-slate-50 py-2 mr-2">Step <%= @step %></h1> --%>
-        <h1 id="current-volume" class="text-2xl text-slate-50 py-2 ml-2">Volume: <%= @volume %></h1>
+        <%!-- <h1 id="current-volume" class="text-2xl text-slate-50 py-2 ml-2">Volume: <%= @volume %></h1> --%>
       </div>
       <div class="inline-flex">
         <element id="vol-meter" class="flex flex-col items-center">
           <element
             id="7"
-            class={"bg-yellow-500 rounded-full border-2 border-yellow-500 w-28 h-[1.125rem] mt-1 #{if @volume == 7, do: "bg-yellow-500", else: "bg-stone-300"}"}
+            class={"bg-yellow-500 rounded-full border-[1px] border-yellow-500 w-28 h-[1.125rem] mt-1 #{if @volume == 7, do: "bg-yellow-500", else: "bg-yellow-500/60"}"}
           >
           </element>
 
           <element
             id="6"
-            class={"bg-yellow-500 rounded-full border-2 border-yellow-500 w-24 h-[1.125rem] mt-1 #{if @volume >= 6, do: "bg-yellow-500", else: "bg-stone-300"}"}
+            class={"bg-yellow-500 rounded-full border-[1px] border-yellow-500 w-24 h-[1.125rem] mt-1 #{if @volume >= 6, do: "bg-yellow-500", else: "bg-yellow-500/60"}"}
           >
           </element>
 
           <element
             id="5"
-            class={"bg-yellow-500 rounded-full border-2 border-yellow-500 w-20 h-[1.125rem] mt-1 #{if @volume >= 5, do: "bg-yellow-500", else: "bg-stone-300"}"}
+            class={"bg-yellow-500 rounded-full border-[1px] border-yellow-500 w-20 h-[1.125rem] mt-1 #{if @volume >= 5, do: "bg-yellow-500", else: "bg-yellow-500/60"}"}
           >
           </element>
 
           <element
             id="4"
-            class={"bg-yellow-500 rounded-full border-2 border-yellow-500 w-16 h-[1.125rem] mt-1 #{if @volume >= 4, do: "bg-yellow-500", else: "bg-stone-300"}"}
+            class={"bg-yellow-500 rounded-full border-[1px] border-yellow-500 w-16 h-[1.125rem] mt-1 #{if @volume >= 4, do: "bg-yellow-500", else: "bg-yellow-500/60"}"}
           >
           </element>
 
           <element
             id="3"
-            class={"bg-yellow-500 rounded-full border-2 border-yellow-500 w-12 h-[1.125rem] mt-1 #{if @volume >= 3, do: "bg-yellow-500", else: "bg-stone-300"}"}
+            class={"bg-yellow-500 rounded-full border-[1px] border-yellow-500 w-12 h-[1.125rem] mt-1 #{if @volume >= 3, do: "bg-yellow-500", else: "bg-yellow-500/60"}"}
           >
           </element>
 
           <element
             id="2"
-            class={"bg-yellow-500 rounded-full border-2 border-yellow-500 w-8 h-[1.125rem] mt-1 #{if @volume >= 2, do: "bg-yellow-500", else: "bg-stone-300"}"}
+            class={"bg-yellow-500 rounded-full border-[1px] border-yellow-500 w-8 h-[1.125rem] mt-1 #{if @volume >= 2, do: "bg-yellow-500", else: "bg-yellow-500/60"}"}
           >
           </element>
 
           <element
             id="1"
-            class={"bg-yellow-500 rounded-full border-2  border-yellow-500 w-4 h-[1.125rem] mt-1 #{if @volume >= 1, do: "bg-yellow-500", else: "bg-stone-300"}"}
+            class={"bg-yellow-500 rounded-full border-[1px]  border-yellow-500 w-[1.125rem] h-[1.125rem] mt-1 #{if @volume >= 1, do: "bg-yellow-500", else: "bg-yellow-500/60"}"}
           >
           </element>
         </element>

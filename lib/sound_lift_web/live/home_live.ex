@@ -13,7 +13,9 @@ defmodule SoundLiftWeb.HomeLive do
       <h2 class="flex flex-col items-center text-slate-50 font-bold">
         Background noise will affect your results.
       </h2>
-      <h2 class="flex flex-col items-center text-slate-50 mt-4">When ready, click the button below.</h2>
+      <h2 class="flex flex-col items-center text-slate-50 mt-4">
+        When ready, click the button below.
+      </h2>
       <div class="flex justify-center items-center">
         <button
           phx-click="go-to-page"
