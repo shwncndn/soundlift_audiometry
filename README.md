@@ -15,15 +15,8 @@ TestResults {
     integer right_ear
     naive_datetime published_on  
 }
-ResultsLog {
-    integer left_ear
-    integer right_ear
-    integer total_score
-    date published_on
-}
+
 User ||--O{ TestResults: ""
-User ||--|| ResultsLog: ""
-TestResults }O--|| ResultsLog: ""
 ```
 
 To start your Phoenix server:
