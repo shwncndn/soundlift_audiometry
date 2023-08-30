@@ -32,43 +32,43 @@ defmodule SoundLiftWeb.AudiometryLive do
         <element id="vol-meter" class="flex flex-col items-center">
           <element
             id="7"
-            class={"bg-yellow-500 rounded-full border-[1px] border-yellow-500 w-28 h-[1.125rem] mt-1 #{if @volume == 7, do: "bg-yellow-500", else: "bg-yellow-500/60"}"}
+            class={"bg-slyellow rounded-full border-[1px] border-yellow-500 w-28 h-[1.125rem] mt-1 #{if @volume == 7, do: "bg-slyellow", else: "bg-slyellow/60"}"}
           >
           </element>
 
           <element
             id="6"
-            class={"bg-yellow-500 rounded-full border-[1px] border-yellow-500 w-24 h-[1.125rem] mt-1 #{if @volume >= 6, do: "bg-yellow-500", else: "bg-yellow-500/60"}"}
+            class={"bg-slyellow rounded-full border-[1px] border-yellow-500 w-24 h-[1.125rem] mt-1 #{if @volume >= 6, do: "bg-slyellow", else: "bg-slyellow/60"}"}
           >
           </element>
 
           <element
             id="5"
-            class={"bg-yellow-500 rounded-full border-[1px] border-yellow-500 w-20 h-[1.125rem] mt-1 #{if @volume >= 5, do: "bg-yellow-500", else: "bg-yellow-500/60"}"}
+            class={"bg-slyellow rounded-full border-[1px] border-yellow-500 w-20 h-[1.125rem] mt-1 #{if @volume >= 5, do: "bg-slyellow", else: "bg-slyellow/60"}"}
           >
           </element>
 
           <element
             id="4"
-            class={"bg-yellow-500 rounded-full border-[1px] border-yellow-500 w-16 h-[1.125rem] mt-1 #{if @volume >= 4, do: "bg-yellow-500", else: "bg-yellow-500/60"}"}
+            class={"bg-slyellow rounded-full border-[1px] border-yellow-500 w-16 h-[1.125rem] mt-1 #{if @volume >= 4, do: "bg-slyellow", else: "bg-slyellow/60"}"}
           >
           </element>
 
           <element
             id="3"
-            class={"bg-yellow-500 rounded-full border-[1px] border-yellow-500 w-12 h-[1.125rem] mt-1 #{if @volume >= 3, do: "bg-yellow-500", else: "bg-yellow-500/60"}"}
+            class={"bg-slyellow rounded-full border-[1px] border-yellow-500 w-12 h-[1.125rem] mt-1 #{if @volume >= 3, do: "bg-slyellow", else: "bg-slyellow/60"}"}
           >
           </element>
 
           <element
             id="2"
-            class={"bg-yellow-500 rounded-full border-[1px] border-yellow-500 w-8 h-[1.125rem] mt-1 #{if @volume >= 2, do: "bg-yellow-500", else: "bg-yellow-500/60"}"}
+            class={"bg-slyellow rounded-full border-[1px] border-yellow-500 w-8 h-[1.125rem] mt-1 #{if @volume >= 2, do: "bg-slyellow", else: "bg-slyellow/60"}"}
           >
           </element>
 
           <element
             id="1"
-            class={"bg-yellow-500 rounded-full border-[1px]  border-yellow-500 w-[1.125rem] h-[1.125rem] mt-1 #{if @volume >= 1, do: "bg-yellow-500", else: "bg-yellow-500/60"}"}
+            class={"bg-slyellow rounded-full border-[1px]  border-yellow-500 w-[1.125rem] h-[1.125rem] mt-1 #{if @volume >= 1, do: "bg-slyellow", else: "bg-slyellow/60"}"}
           >
           </element>
         </element>
@@ -104,7 +104,7 @@ defmodule SoundLiftWeb.AudiometryLive do
       <div>
         <button
           id="save-and-continue"
-          class="w-28 h-12 bg-yellow-500 hover:bg-yellow-300 rounded-full text-blue-900"
+          class="w-28 h-12 bg-slyellow hover:bg-yellow-300 rounded-full text-blue-900 font-semibold"
           phx-click="save_and_continue"
         >
           Save and Continue
@@ -113,7 +113,7 @@ defmodule SoundLiftWeb.AudiometryLive do
           id="toggle-sound"
           phx-hook="ToggleSound"
           data-volume={@volume}
-          class="bg-yellow-500 hover:bg-yellow-300 text-blue-900 rounded-full h-10 mt-4 mb-8 w-28"
+          class="bg-slyellow hover:bg-yellow-300 text-blue-900 rounded-full h-10 mt-4 mb-8 w-28 font-semibold"
         >
           Start | Stop
         </button>
@@ -123,26 +123,29 @@ defmodule SoundLiftWeb.AudiometryLive do
         <element class={"flex items-center mx-2 border-2 bg-opacity-0 justify-center rounded-full #{if @step == 1, do: "border-yellow-500 w-24 h-24 text-6xl", else: "w-20 h-20 border-slate-500 text-5xl text-slate-500"}"}>
           1
         </element>
-        <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
+        <element class="bg-slyellow rounded-full w-4 h-4 mt-1"></element>
         <element class={"flex items-center mx-2 border-2 outline-slate-50 bg-opacity-0 justify-center rounded-full #{if @step == 2, do: "border-yellow-500 w-24 h-24 text-6xl", else: "w-20 h-20 border-slate-500 w-20 h-20 text-5xl text-slate-500"}"}>
           2
         </element>
-        <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
+        <element class="bg-slyellow rounded-full w-4 h-4 mt-1"></element>
         <element class={"flex items-center mx-2 w-16 h-16 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full #{if @step == 3, do: "border-yellow-500 w-24 h-24 text-6xl", else: "w-20 h-20 border-slate-500 w-20 h-20 text-5xl text-slate-500"}"}>
           3
         </element>
-        <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
+        <element class="bg-slyellow rounded-full w-4 h-4 mt-1"></element>
         <element class={"flex items-center mx-2 w-16 h-16 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full #{if @step == 4, do: "border-yellow-500 w-24 h-24 text-6xl", else: "w-20 h-20 border-slate-500 w-20 h-20 text-5xl text-slate-500"}"}>
           4
         </element>
-        <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
+        <element class="bg-slyellow rounded-full w-4 h-4 mt-1"></element>
         <element class={"flex items-center mx-2 w-16 h-16 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full #{if @step == 5, do: "border-yellow-500 w-24 h-24 text-6xl", else: "w-20 h-20 border-slate-500 w-20 h-20 text-5xl text-slate-500"}"}>
           5
         </element>
-        <element class="bg-yellow-500 rounded-full w-4 h-4 mt-1"></element>
+        <element class="bg-slyellow rounded-full w-4 h-4 mt-1"></element>
         <element class={"flex items-center mx-2 w-16 h-16 text-slate-50 border-2 border-slate-50 outline-slate-50 bg-opacity-0 justify-center rounded-full #{if @step == 6, do: "border-yellow-500 w-24 h-24 text-6xl", else: "w-20 h-20 border-slate-500 w-20 h-20 text-5xl text-slate-500"}"}>
           6
         </element>
+      </div>
+      <div class="flex justify-between inline-flex flex items-center">
+
       </div>
     </div>
     """

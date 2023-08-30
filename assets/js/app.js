@@ -72,9 +72,45 @@ let Hooks = {
                     break
 
             }
-
-        console.log("log call")
         },
+        // updated() { 
+        //     switch (this.el.dataset.step) {
+        //         case "1":
+        //             synth.triggerAttack("C4");
+        //             console.log("1")
+
+        //             break
+        //         case "2":
+        //             synth.triggerAttack("D4");
+        //             console.log("2")
+
+        //             break
+        //         case "3":
+        //             console.log("default")
+        //             synth.triggerAttack("E4");
+
+        //             break
+        //         case "4":
+        //             console.log("default")
+        //             synth.triggerAttack("F4");
+                    
+        //             break
+
+        //             case "5":
+        //             console.log("default")
+        //             synth.triggerAttack("G4");
+                    
+        //             break
+
+        //             case "6":
+        //             console.log("default")
+        //             synth.triggerAttack("A4");
+                    
+        //             break
+
+        //     }
+        // },
+        
         mounted() {
             this.soundOn = false;
             this.el.addEventListener("click", () => {
@@ -82,7 +118,7 @@ let Hooks = {
                     synth.triggerRelease();
                     this.soundOn = false;
                 } else {
-                    console.log(typeof this.el.dataset.volume)
+                    
                     
 
 
