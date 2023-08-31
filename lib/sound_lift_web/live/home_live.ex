@@ -2,7 +2,15 @@ defmodule SoundLiftWeb.HomeLive do
   use SoundLiftWeb, :live_view
 
   def mount(_params, _session, socket) do
+    if connected?(socket) do
+      SoundLiftWeb.Endpoint.subscribe("stat_counter")
+    end
     {:ok, socket}
+  end
+
+  def handle_info(%Phoenix.Socket.Broadcast{topic: "stat_counter", event: "inc_result"}, socket) do
+    IO.inspect(%Phoenix.Socket.Broadcast{topic: "stat_counter", event: "inc_result"}, label: "broadcast")
+    {:noreply, socket}
   end
 
   def render(assigns) do

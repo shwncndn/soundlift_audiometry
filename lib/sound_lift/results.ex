@@ -21,6 +21,15 @@ defmodule SoundLift.Results do
     Repo.all(Result)
   end
 
+
+
+  def get_total_users do
+    Repo.one(
+      from r in Result,
+      select: count(r.id)
+    )
+  end
+
   @doc """
   Gets a single result.
 
