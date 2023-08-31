@@ -25,92 +25,33 @@ import * as Tone from '../vendor/tone';
 
 const synth = new Tone.Synth().toDestination();
 
+const volume_values = {
+    1: -28,
+    2: -24,
+    3: -20,
+    4: -16,
+    5: -12,
+    6: -8,
+    7: -4,
+}
 
+const note_values = {
+    1: "C4",
+    2: "D4",
+    3: "E4",
+    4: "F4",
+    5: "G4",
+    6: "A4",
+    7: "B4",
+}
 
 let Hooks = {
-
     ToggleSound: {
-        updated() { 
-            switch (this.el.dataset.volume) {
-                case "1":
-                    synth.volume.value = -28;
-                    console.log("1")
-
-                    break
-                case "2":
-                    synth.volume.value = -24;
-                    console.log("2")
-
-                    break
-                case "3":
-                    console.log("default")
-                    synth.volume.value = -20;
-
-                    break
-                case "4":
-                    console.log("default")
-                    synth.volume.value = -16;
-                    
-                    break
-
-                    case "5":
-                    console.log("default")
-                    synth.volume.value = -12;
-                    
-                    break
-
-                    case "6":
-                    console.log("default")
-                    synth.volume.value = -8;
-                    
-                    break
-
-                    case "7":
-                    console.log("default")
-                    synth.volume.value = -4;
-                    
-                    break
-
-            }
+        updated() {
+            synth.volume.value = volume_values[this.el.dataset.volume]
+            synth.triggerAttack(note_values[this.el.dataset.step])
         },
-        // updated() { 
-        //     switch (this.el.dataset.step) {
-        //         case "1":
-        //             synth.triggerAttack("C4");
-        //             console.log("1")
 
-        //             break
-        //         case "2":
-        //             synth.triggerAttack("D4");
-        //             console.log("2")
-
-        //             break
-        //         case "3":
-        //             console.log("default")
-        //             synth.triggerAttack("E4");
-
-        //             break
-        //         case "4":
-        //             console.log("default")
-        //             synth.triggerAttack("F4");
-                    
-        //             break
-
-        //             case "5":
-        //             console.log("default")
-        //             synth.triggerAttack("G4");
-                    
-        //             break
-
-        //             case "6":
-        //             console.log("default")
-        //             synth.triggerAttack("A4");
-                    
-        //             break
-
-        //     }
-        // },
-        
         mounted() {
             this.soundOn = false;
             this.el.addEventListener("click", () => {
@@ -118,12 +59,7 @@ let Hooks = {
                     synth.triggerRelease();
                     this.soundOn = false;
                 } else {
-                    
-                    
-
-
-
-                    synth.triggerAttack("C4");
+                    synth.triggerAttack(note_values[this.el.dataset.step])
                     this.soundOn = true;
                 }
             });

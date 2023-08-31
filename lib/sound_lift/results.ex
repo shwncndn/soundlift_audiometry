@@ -1,7 +1,7 @@
 defmodule SoundLift.Results do
   @moduledoc """
   The Results context.
-  """
+"""
 
   import Ecto.Query, warn: false
   alias SoundLift.Repo

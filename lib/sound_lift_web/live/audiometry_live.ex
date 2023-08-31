@@ -4,13 +4,15 @@ defmodule SoundLiftWeb.AudiometryLive do
   alias SoundLift.Results
 
   def mount(_params, session, socket) do
-  
+
     {:ok, result} = Results.create_result(%{user_id: socket.assigns.current_user.id})
+
+  
 
     {:ok,
      socket
      |> assign(:result, result)
-     |> assign(:volume, 4)
+     |> assign(:volume, 3)
      |> assign(:current_ear, :left)
      |> assign(:step, 1)}
   end
@@ -103,6 +105,7 @@ defmodule SoundLiftWeb.AudiometryLive do
           id="toggle-sound"
           phx-hook="ToggleSound"
           data-volume={@volume}
+          data-step={@step}
           class="bg-slyellow hover:bg-yellow-300 text-blue-900 rounded-full h-10 mt-4 mb-8 w-[120px] font-semibold"
         >
           Start | Stop

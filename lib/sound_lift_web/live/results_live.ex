@@ -4,16 +4,11 @@ defmodule SoundLiftWeb.ResultsLive do
   alias SoundLift.Results
 
   def mount(params, _session, socket) do
-    if connected?(socket) do
-      SoundLiftWeb.Endpoint.subscribe("stats")
-{:ok, stream(socket, :stats, Accounts.get_total_users())}
-
-    end
-
     result = Results.get_result!(params["id"])
     {:ok, assign(socket, :result, result.id)}
     IO.inspect(result, label: "populated Result struct")
 
+    
     # acc_result =
     #   result
     #   |> Map.from_struct()
