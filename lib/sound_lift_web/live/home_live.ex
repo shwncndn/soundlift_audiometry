@@ -7,12 +7,13 @@ defmodule SoundLiftWeb.HomeLive do
     if connected?(socket) do
       SoundLiftWeb.Endpoint.subscribe("stat_counter")
     end
-    {:ok, socket}
+    {:ok, socket
+  |> assign(:stat_counter, Results.results_count)}
   end
 
   def handle_info(%Phoenix.Socket.Broadcast{topic: "stat_counter", event: "inc_result", payload: stat}, socket) do
-    IO.inspect(%Phoenix.Socket.Broadcast{topic: "stat_counter", event: "inc_result", payload: stat}, label: "broadcast")
-    {:noreply, assign(socket, :stat_counter, stat)}
+    # IO.inspect(%Phoenix.Socket.Broadcast{topic: "stat_counter", event: "inc_result", payload: stat}, label: "broadcast")
+    {:noreply, assign(socket, :stat_counter, socket.assigns.stat_counter + 1)}
   end
 
   def render(assigns) do
@@ -28,18 +29,18 @@ defmodule SoundLiftWeb.HomeLive do
       </h2>
       <div class="flex justify-center items-center">
         <button
-          phx-click="go-to-page"
+          phx-click="go-to-test-page"
           class="rounded-full text-blue-900 font-bold text-sm my-8 w-28 h-8 bg-yellow-400 hover:bg-yellow-300"
         >
           Take the Test!
         </button>
-        <%!-- <h1 class="text-slate-50">Total: <%= @stat_counter %></h1> --%>
+        <h1 class="text-slate-50">Total: <%= @stat_counter %></h1>
       </div>
     </body>
     """
   end
 
-  def handle_event("go-to-page", url, socket) do
+  def handle_event("go-to-test-page", url, socket) do
     {:noreply, push_navigate(socket, to: ~p"/audiometry")}
   end
 end

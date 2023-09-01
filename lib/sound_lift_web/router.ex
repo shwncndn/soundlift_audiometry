@@ -23,7 +23,8 @@ defmodule SoundLiftWeb.Router do
     live_session :app_requires_authenticated_user,
       on_mount: [{SoundLiftWeb.UserAuth, :ensure_authenticated}] do
       live "/audiometry", AudiometryLive
-      live "/results/:id", ResultsLive
+      live "/results/:id", Results.ShowLive
+      live "/results", Results.IndexLive
     end
   end
 

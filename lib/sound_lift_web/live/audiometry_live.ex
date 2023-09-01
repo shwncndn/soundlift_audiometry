@@ -202,7 +202,7 @@ defmodule SoundLiftWeb.AudiometryLive do
       cond do
         socket.assigns.current_ear == :right and socket.assigns.step == 6 ->
 
-          SoundLiftWeb.Endpoint.broadcast_from(self(), "stat_counter", "inc_result", Results.get_total_users())
+          SoundLiftWeb.Endpoint.broadcast_from(self(), "stat_counter", "inc_result", Results.results_count)
 
           socket
           |> put_flash(:info, "Test Complete!")

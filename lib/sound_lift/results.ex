@@ -23,7 +23,7 @@ defmodule SoundLift.Results do
 
 
 
-  def get_total_users do
+  def results_count do
     Repo.one(
       from r in Result,
       select: count(r.id)
