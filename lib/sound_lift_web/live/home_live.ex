@@ -1,6 +1,8 @@
 defmodule SoundLiftWeb.HomeLive do
   use SoundLiftWeb, :live_view
 
+  alias SoundLift.Results
+
   def mount(_params, _session, socket) do
     if connected?(socket) do
       SoundLiftWeb.Endpoint.subscribe("stat_counter")
@@ -8,9 +10,9 @@ defmodule SoundLiftWeb.HomeLive do
     {:ok, socket}
   end
 
-  def handle_info(%Phoenix.Socket.Broadcast{topic: "stat_counter", event: "inc_result"}, socket) do
-    IO.inspect(%Phoenix.Socket.Broadcast{topic: "stat_counter", event: "inc_result"}, label: "broadcast")
-    {:noreply, socket}
+  def handle_info(%Phoenix.Socket.Broadcast{topic: "stat_counter", event: "inc_result", payload: stat}, socket) do
+    IO.inspect(%Phoenix.Socket.Broadcast{topic: "stat_counter", event: "inc_result", payload: stat}, label: "broadcast")
+    {:noreply, assign(socket, :stat_counter, stat)}
   end
 
   def render(assigns) do
@@ -31,6 +33,7 @@ defmodule SoundLiftWeb.HomeLive do
         >
           Take the Test!
         </button>
+        <%!-- <h1 class="text-slate-50">Total: <%= @stat_counter %></h1> --%>
       </div>
     </body>
     """
