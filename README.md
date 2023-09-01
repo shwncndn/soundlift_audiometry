@@ -1,6 +1,9 @@
 # SoundLift
 
 
+# SoundLift
+
+
 ```mermaid
 erDiagram
 User {
@@ -13,16 +16,11 @@ User {
 TestResults {
     integer left_ear
     integer right_ear
+    integer total_score
     naive_datetime published_on  
 }
-ResultsLog {
-    integer left_ear
-    integer right_ear
-    date published_on
-}
+
 User ||--O{ TestResults: ""
-User ||--|| ResultsLog: ""
-TestResults }O--|| ResultsLog: ""
 ```
 
 To start your Phoenix server:

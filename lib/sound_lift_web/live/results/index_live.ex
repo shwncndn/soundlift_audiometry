@@ -11,5 +11,8 @@ defmodule SoundLiftWeb.Results.IndexLive do
 """
   end
 
-  
+
 end
+
+# TODO: Use :total_score virtual field to sum average of a single user's results
+# List all tests taken by user
