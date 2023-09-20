@@ -43,13 +43,23 @@ const note_values = {
     5: "G4",
     6: "A4",
     7: "B4",
+
 }
 
+// 1. check current URL 
+// 2. when push navigating on Elixir side
+// 3. when component is destroyed
+// 4. when JS registers navigation
 let Hooks = {
     ToggleSound: {
         updated() {
             synth.volume.value = volume_values[this.el.dataset.volume]
             synth.triggerAttack(note_values[this.el.dataset.step])
+        },
+
+        destroyed() {
+            synth.triggerRelease();
+            
         },
 
         mounted() {
@@ -63,6 +73,9 @@ let Hooks = {
                     this.soundOn = true;
                 }
             });
+            // this.handleEvent("stop_sound", () => {
+            //     synth.triggerRelease
+            // }) 
         }
     }
 

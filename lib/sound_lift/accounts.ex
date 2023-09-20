@@ -10,16 +10,10 @@ defmodule SoundLift.Accounts do
 
   ## Database getters
 
-  def broadcast(user_count, topic) do
-
-  end
-
-  
-
   def get_total_users do
     Repo.one(
       from u in User,
-      select: count(u.id)
+        select: count(u.id)
     )
   end
 

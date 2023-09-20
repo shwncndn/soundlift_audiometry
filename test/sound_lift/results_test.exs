@@ -36,6 +36,7 @@ defmodule SoundLift.ResultsTest do
 
     test "create_result/1 with valid data creates a result" do
       user = user_fixture(username: "MyUser")
+
       valid_attrs = %{
         step_one_left: 42,
         step_one_right: 42,

@@ -4,10 +4,7 @@ defmodule SoundLiftWeb.AudiometryLive do
   alias SoundLift.Results
 
   def mount(_params, session, socket) do
-
     {:ok, result} = Results.create_result(%{user_id: socket.assigns.current_user.id})
-
-
 
     {:ok,
      socket
@@ -201,11 +198,16 @@ defmodule SoundLiftWeb.AudiometryLive do
     socket =
       cond do
         socket.assigns.current_ear == :right and socket.assigns.step == 6 ->
-
-          SoundLiftWeb.Endpoint.broadcast_from(self(), "stat_counter", "inc_result", Results.results_count)
+          SoundLiftWeb.Endpoint.broadcast_from(
+            self(),
+            "stat_counter",
+            "inc_result",
+            Results.results_count()
+          )
 
           socket
           |> put_flash(:info, "Test Complete!")
+          |> push_event("stop_sound", %{})
           |> push_navigate(to: ~p"/results/#{result}")
 
         socket.assigns.current_ear == :left ->

@@ -8,7 +8,6 @@ defmodule SoundLiftWeb.Results.ShowLive do
     {:ok, assign(socket, :result, result.id)}
     IO.inspect(result, label: "populated Result struct")
 
-
     # acc_result =
     #   result
     #   |> Map.from_struct()
@@ -97,8 +96,13 @@ defmodule SoundLiftWeb.Results.ShowLive do
       </div>
       <div class="border-b w-[600px] mt-20 mx-auto border-slyellow"></div>
       <div class="mt-8 rounded-full px-10">
-      <p class="mt-4 font-medium">Click below to see results history</p>
-      <button phx-click="go-to-log-page" class="bg-slyellow hover:bg-yellow-300 text-blue-900 rounded-full h-8 mt-6 w-[140px] font-semibold">View Log</button>
+        <p class="mt-4 font-medium">Click below to see results history</p>
+        <button
+          phx-click="go-to-log-page"
+          class="bg-slyellow hover:bg-yellow-300 text-blue-900 rounded-full h-8 mt-6 w-[140px] font-semibold"
+        >
+          View Log
+        </button>
       </div>
     </div>
     """

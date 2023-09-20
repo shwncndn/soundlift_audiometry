@@ -7,11 +7,16 @@ defmodule SoundLiftWeb.HomeLive do
     if connected?(socket) do
       SoundLiftWeb.Endpoint.subscribe("stat_counter")
     end
-    {:ok, socket
-  |> assign(:stat_counter, Results.results_count)}
+
+    {:ok,
+     socket
+     |> assign(:stat_counter, Results.results_count())}
   end
 
-  def handle_info(%Phoenix.Socket.Broadcast{topic: "stat_counter", event: "inc_result", payload: stat}, socket) do
+  def handle_info(
+        %Phoenix.Socket.Broadcast{topic: "stat_counter", event: "inc_result", payload: stat},
+        socket
+      ) do
     # IO.inspect(%Phoenix.Socket.Broadcast{topic: "stat_counter", event: "inc_result", payload: stat}, label: "broadcast")
     {:noreply, assign(socket, :stat_counter, socket.assigns.stat_counter + 1)}
   end

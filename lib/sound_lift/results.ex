@@ -1,7 +1,7 @@
 defmodule SoundLift.Results do
   @moduledoc """
-  The Results context.
-"""
+    The Results context.
+  """
 
   import Ecto.Query, warn: false
   alias SoundLift.Repo
@@ -21,12 +21,17 @@ defmodule SoundLift.Results do
     Repo.all(Result)
   end
 
-
+  def list_results_for_user(user_id) do
+    Repo.all(
+      from r in Result,
+        where: r.user_id == ^user_id
+    )
+  end
 
   def results_count do
     Repo.one(
       from r in Result,
-      select: count(r.id)
+        select: count(r.id)
     )
   end
 
