@@ -3,18 +3,18 @@ defmodule SoundLift.Repo.Migrations.CreateResults do
 
   def change do
     create table(:results) do
-      add :step_one_left, :integer
-      add :step_one_right, :integer
-      add :step_two_left, :integer
-      add :step_two_right, :integer
-      add :step_three_left, :integer
-      add :step_three_right, :integer
-      add :step_four_left, :integer
-      add :step_four_right, :integer
-      add :step_five_left, :integer
-      add :step_five_right, :integer
-      add :step_six_left, :integer
-      add :step_six_right, :integer
+      add :step_1_left, :integer
+      add :step_1_right, :integer
+      add :step_2_left, :integer
+      add :step_2_right, :integer
+      add :step_3_left, :integer
+      add :step_3_right, :integer
+      add :step_4_left, :integer
+      add :step_4_right, :integer
+      add :step_5_left, :integer
+      add :step_5_right, :integer
+      add :step_6_left, :integer
+      add :step_6_right, :integer
 
       timestamps()
     end

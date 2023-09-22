@@ -3,18 +3,18 @@ defmodule SoundLift.Results.Result do
   import Ecto.Changeset
 
   schema "results" do
-    field :step_one_left, :integer
-    field :step_one_right, :integer
-    field :step_two_left, :integer
-    field :step_two_right, :integer
-    field :step_three_left, :integer
-    field :step_three_right, :integer
-    field :step_four_left, :integer
-    field :step_four_right, :integer
-    field :step_five_left, :integer
-    field :step_five_right, :integer
-    field :step_six_left, :integer
-    field :step_six_right, :integer
+    field :step_1_left, :integer
+    field :step_1_right, :integer
+    field :step_2_left, :integer
+    field :step_2_right, :integer
+    field :step_3_left, :integer
+    field :step_3_right, :integer
+    field :step_4_left, :integer
+    field :step_4_right, :integer
+    field :step_5_left, :integer
+    field :step_5_right, :integer
+    field :step_6_left, :integer
+    field :step_6_right, :integer
     field :total_score, :integer, virtual: true
     belongs_to :user, SoundLift.Accounts.User
 
@@ -27,36 +27,36 @@ defmodule SoundLift.Results.Result do
 
     result
     |> cast(attrs, [
-      :step_one_left,
-      :step_one_right,
-      :step_two_left,
-      :step_two_right,
-      :step_three_left,
-      :step_three_right,
-      :step_four_left,
-      :step_four_right,
-      :step_five_left,
-      :step_five_right,
-      :step_six_left,
-      :step_six_right,
+      :step_1_left,
+      :step_1_right,
+      :step_2_left,
+      :step_2_right,
+      :step_3_left,
+      :step_3_right,
+      :step_4_left,
+      :step_4_right,
+      :step_5_left,
+      :step_5_right,
+      :step_6_left,
+      :step_6_right,
       :user_id
     ])
     |> validate_required([:user_id])
   end
 
   # defp calculate_total_score(changeset) do
-  #   one_left = get_field(changeset, :step_one_left)
-  #   one_right = get_field(changeset, :step_one_right)
-  #   two_left = get_field(changeset, :step_two_left)
-  #   two_right = get_field(changeset, :step_two_right)
-  #   three_left = get_field(changeset, :step_three_left)
-  #   three_right = get_field(changeset, :step_three_right)
-  #   four_left = get_field(changeset, :step_four_left)
-  #   four_right = get_field(changeset, :step_four_right)
-  #   five_left = get_field(changeset, :step_five_left)
-  #   five_right = get_field(changeset, :step_five_right)
-  #   six_left = get_field(changeset, :step_six_left)
-  #   six_right = get_field(changeset, :step_six_right)
+  #   one_left = get_field(changeset, :step_1_left)
+  #   one_right = get_field(changeset, :step_1_right)
+  #   two_left = get_field(changeset, :step_2_left)
+  #   two_right = get_field(changeset, :step_2_right)
+  #   three_left = get_field(changeset, :step_3_left)
+  #   three_right = get_field(changeset, :step_3_right)
+  #   four_left = get_field(changeset, :step_4_left)
+  #   four_right = get_field(changeset, :step_4_right)
+  #   five_left = get_field(changeset, :step_5_left)
+  #   five_right = get_field(changeset, :step_5_right)
+  #   six_left = get_field(changeset, :step_6_left)
+  #   six_right = get_field(changeset, :step_6_right)
 
   #   dbg()
 

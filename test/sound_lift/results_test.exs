@@ -11,17 +11,17 @@ defmodule SoundLift.ResultsTest do
 
     @invalid_attrs %{
       step_one_left: nil,
-      step_one_right: nil,
-      step_two_left: nil,
-      step_two_right: nil,
-      step_three_left: nil,
-      step_three_right: nil,
-      step_four_left: nil,
-      step_four_right: nil,
-      step_five_left: nil,
-      step_five_right: nil,
-      step_six_left: nil,
-      step_six_right: nil
+      step_1_right: nil,
+      step_2_left: nil,
+      step_2_right: nil,
+      step_3_left: nil,
+      step_3_right: nil,
+      step_4_left: nil,
+      step_4_right: nil,
+      step_5_left: nil,
+      step_5_right: nil,
+      step_6_left: nil,
+      step_6_right: nil
     }
 
     test "list_results/0 returns all results" do
@@ -39,33 +39,33 @@ defmodule SoundLift.ResultsTest do
 
       valid_attrs = %{
         step_one_left: 42,
-        step_one_right: 42,
-        step_two_left: 42,
-        step_two_right: 42,
-        step_three_left: 42,
-        step_three_right: 42,
-        step_four_left: 42,
-        step_four_right: 42,
-        step_five_left: 42,
-        step_five_right: 42,
-        step_six_left: 42,
-        step_six_right: 42,
+        step_1_right: 42,
+        step_2_left: 42,
+        step_2_right: 42,
+        step_3_left: 42,
+        step_3_right: 42,
+        step_4_left: 42,
+        step_4_right: 42,
+        step_5_left: 42,
+        step_5_right: 42,
+        step_6_left: 42,
+        step_6_right: 42,
         user_id: user.id
       }
 
       assert {:ok, %Result{} = result} = Results.create_result(valid_attrs)
       assert result.step_one_left == 42
-      assert result.step_one_right == 42
-      assert result.step_two_left == 42
-      assert result.step_two_right == 42
-      assert result.step_three_left == 42
-      assert result.step_three_right == 42
-      assert result.step_four_left == 42
-      assert result.step_four_right == 42
-      assert result.step_five_left == 42
-      assert result.step_five_right == 42
-      assert result.step_six_left == 42
-      assert result.step_six_right == 42
+      assert result.step_1_right == 42
+      assert result.step_2_left == 42
+      assert result.step_2_right == 42
+      assert result.step_3_left == 42
+      assert result.step_3_right == 42
+      assert result.step_4_left == 42
+      assert result.step_4_right == 42
+      assert result.step_5_left == 42
+      assert result.step_5_right == 42
+      assert result.step_6_left == 42
+      assert result.step_6_right == 42
     end
 
     test "create_result/1 with invalid data returns error changeset" do
@@ -77,32 +77,32 @@ defmodule SoundLift.ResultsTest do
 
       update_attrs = %{
         step_one_left: 43,
-        step_one_right: 43,
-        step_two_left: 43,
-        step_two_right: 43,
-        step_three_left: 43,
-        step_three_right: 43,
-        step_four_left: 43,
-        step_four_right: 43,
-        step_five_left: 43,
-        step_five_right: 43,
-        step_six_left: 43,
-        step_six_right: 43
+        step_1_right: 43,
+        step_2_left: 43,
+        step_2_right: 43,
+        step_3_left: 43,
+        step_3_right: 43,
+        step_4_left: 43,
+        step_4_right: 43,
+        step_5_left: 43,
+        step_5_right: 43,
+        step_6_left: 43,
+        step_6_right: 43
       }
 
       assert {:ok, %Result{} = result} = Results.update_result(result, update_attrs)
       assert result.step_one_left == 43
-      assert result.step_one_right == 43
-      assert result.step_two_left == 43
-      assert result.step_two_right == 43
-      assert result.step_three_left == 43
-      assert result.step_three_right == 43
-      assert result.step_four_left == 43
-      assert result.step_four_right == 43
-      assert result.step_five_left == 43
-      assert result.step_five_right == 43
-      assert result.step_six_left == 43
-      assert result.step_six_right == 43
+      assert result.step_1_right == 43
+      assert result.step_2_left == 43
+      assert result.step_2_right == 43
+      assert result.step_3_left == 43
+      assert result.step_3_right == 43
+      assert result.step_4_left == 43
+      assert result.step_4_right == 43
+      assert result.step_5_left == 43
+      assert result.step_5_right == 43
+      assert result.step_6_left == 43
+      assert result.step_6_right == 43
     end
 
     test "update_result/2 with invalid data returns error changeset" do

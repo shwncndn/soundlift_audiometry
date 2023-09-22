@@ -4,11 +4,12 @@ defmodule SoundLiftWeb.AudiometryLive do
   alias SoundLift.Results
 
   def mount(_params, session, socket) do
-    {:ok, result} = Results.create_result(%{user_id: socket.assigns.current_user.id})
+    IO.inspect(self())
+    #
 
     {:ok,
      socket
-     |> assign(:result, result)
+     |> assign(:result, %{})
      |> assign(:volume, 3)
      |> assign(:current_ear, :left)
      |> assign(:step, 1)}
@@ -20,10 +21,7 @@ defmodule SoundLiftWeb.AudiometryLive do
       <h1 id="current-ear" class="text-5xl text-slate-50 py-8">
         <%= String.capitalize(Atom.to_string(@current_ear)) %> Ear
       </h1>
-      <div class="inline-flex">
-        <%!-- <h1 id="current-step" class="text-2xl text-slate-50 py-2 mr-2">Step <%= @step %></h1> --%>
-        <%!-- <h1 id="current-volume" class="text-2xl text-slate-50 py-2 ml-2">Volume: <%= @volume %></h1> --%>
-      </div>
+      <div class="inline-flex"></div>
       <div class="inline-flex">
         <element id="vol-meter" class="flex flex-col items-center">
           <element
@@ -146,7 +144,6 @@ defmodule SoundLiftWeb.AudiometryLive do
     """
   end
 
-  # TODO how to limit count w/o crashing when limit reached?
   def handle_event("inc", _, socket) do
     {:noreply, assign(socket, :volume, min(socket.assigns.volume + 1, 7))}
   end
@@ -156,48 +153,16 @@ defmodule SoundLiftWeb.AudiometryLive do
   end
 
   def handle_event("save_and_continue", _params, socket) do
-    # 1, left
-    # 1, right
-    # 2, left
-    # 2, right
-    # 3, left
-    # 3, right
-    # 4, left
-    # 4, right
-    # 5, left
-    # 5, right
-    # 6, left
-    # 6, right
+    field = get_field_name(socket.assigns.current_ear, socket.assigns.step)
 
-    # assign(:result, Results.update_result(socket.assigns.result, %{step_one_left: 1}))
-    # {:ok, result} = Results.update_result(socket.assigns.result, %{step_one_left: 1})
-
-    field =
-      case {socket.assigns.current_ear, socket.assigns.step} do
-        {:left, 1} -> :step_one_left
-        {:right, 1} -> :step_one_right
-        {:left, 2} -> :step_two_left
-        {:right, 2} -> :step_two_right
-        {:left, 3} -> :step_three_left
-        {:right, 3} -> :step_three_right
-        {:left, 4} -> :step_four_left
-        {:right, 4} -> :step_four_right
-        {:left, 5} -> :step_five_left
-        {:right, 5} -> :step_five_right
-        {:left, 6} -> :step_six_left
-        {:right, 6} -> :step_six_right
-        _ -> "No match"
-      end
-
-    {:ok, result} =
-      Results.update_result(
-        IO.inspect(socket.assigns.result, label: "SOCKET RESULT"),
-        Map.new([{field, socket.assigns.volume}])
-      )
+    result = Map.put(socket.assigns.result, field, socket.assigns.volume)
 
     socket =
       cond do
         socket.assigns.current_ear == :right and socket.assigns.step == 6 ->
+          {:ok, result} =
+            Results.create_result(Map.put(result, :user_id, socket.assigns.current_user.id))
+
           SoundLiftWeb.Endpoint.broadcast_from(
             self(),
             "stat_counter",
@@ -223,13 +188,7 @@ defmodule SoundLiftWeb.AudiometryLive do
     {:noreply, assign(socket, result: result, volume: 4)}
   end
 
-  # def handle_info(msg, socket) do
-  #   case socket.assigns.step do
-  #     1 ->
-  #     2 ->
-  #     3 ->
-  #     4 ->
-  #     5 ->
-  #     6 ->
-  #   end
+  def get_field_name(current_ear, step) do
+    :"step_#{step}_#{current_ear}"
+  end
 end

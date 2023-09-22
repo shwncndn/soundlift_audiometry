@@ -84,4 +84,9 @@ defmodule SoundLiftWeb.AudiometryLiveTest do
       assert "/results/" <> id = path
     end
   end
+
+  test "get_field_name/2" do
+    assert AudiometryLive.get_field_name(:left, 1) == :step_1_left
+    assert AudiometryLive.get_field_name(:right, 6) == :step_6_right
+  end
 end

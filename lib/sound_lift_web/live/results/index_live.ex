@@ -6,7 +6,6 @@ defmodule SoundLiftWeb.Results.IndexLive do
 
   @impl true
   def mount(_params, _session, socket) do
-
     {:ok, stream(socket, :results, Results.list_results_for_user(socket.assigns.current_user.id))}
     IO.inspect(socket, label: "SESSION INSPECT")
   end
@@ -16,10 +15,9 @@ defmodule SoundLiftWeb.Results.IndexLive do
     {:noreply, stream(socket, socket.assigns.current_user.id, params)}
   end
 
-
   def render(assigns) do
     ~H"""
-    
+
     """
   end
 

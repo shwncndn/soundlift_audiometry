@@ -12,17 +12,17 @@ defmodule SoundLift.ResultsFixtures do
       attrs
       |> Enum.into(%{
         step_one_left: 42,
-        step_one_right: 42,
-        step_two_left: 42,
-        step_two_right: 42,
-        step_three_left: 42,
-        step_three_right: 42,
-        step_four_left: 42,
-        step_four_right: 42,
-        step_five_left: 42,
-        step_five_right: 42,
-        step_six_left: 42,
-        step_six_right: 42
+        step_1_right: 42,
+        step_2_left: 42,
+        step_2_right: 42,
+        step_3_left: 42,
+        step_3_right: 42,
+        step_4_left: 42,
+        step_4_right: 42,
+        step_5_left: 42,
+        step_5_right: 42,
+        step_6_left: 42,
+        step_6_right: 42
       })
       |> SoundLift.Results.create_result()
 
