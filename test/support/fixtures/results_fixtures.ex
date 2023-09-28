@@ -11,7 +11,7 @@ defmodule SoundLift.ResultsFixtures do
     {:ok, result} =
       attrs
       |> Enum.into(%{
-        step_one_left: 42,
+        step_1_left: 42,
         step_1_right: 42,
         step_2_left: 42,
         step_2_right: 42,

@@ -17,8 +17,6 @@ defmodule SoundLiftWeb.HomeLive do
         %Phoenix.Socket.Broadcast{topic: "stat_counter", event: "inc_result", payload: stat},
         socket
       ) do
-    # IO.inspect(%Phoenix.Socket.Broadcast{topic: "stat_counter", event: "inc_result", payload: stat}, label: "broadcast")
-    IO.inspect({self(), socket.assigns.stat_counter}, label: "stat_counter")
     {:noreply, assign(socket, :stat_counter, socket.assigns.stat_counter + 1)}
   end
 

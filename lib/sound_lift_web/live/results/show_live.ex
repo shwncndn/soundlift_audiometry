@@ -5,18 +5,6 @@ defmodule SoundLiftWeb.Results.ShowLive do
 
   def mount(params, _session, socket) do
     result = Results.get_result!(params["id"])
-    {:ok, assign(socket, :result, result.id)}
-    IO.inspect(result, label: "populated Result struct")
-
-    # acc_result =
-    #   result
-    #   |> Map.from_struct()
-    #   |> Map.delete(:id)
-    #   |> Map.delete(:user_id)
-    #   |> Map.delete(:total_score)
-    #   |> Enum.filter(fn {_key, value} -> is_integer(value) end)
-    #   |> Enum.map(fn {_key, value} -> value end)
-    #   |> Enum.sum()
 
     {:ok,
      socket
@@ -110,5 +98,9 @@ defmodule SoundLiftWeb.Results.ShowLive do
 
   def handle_event("go-to-log-page", url, socket) do
     {:noreply, push_navigate(socket, to: ~p"/results")}
+  end
+
+  def assign_total_score(assigns) do
+    @result.total_score
   end
 end

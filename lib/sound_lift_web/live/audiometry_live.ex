@@ -4,9 +4,6 @@ defmodule SoundLiftWeb.AudiometryLive do
   alias SoundLift.Results
 
   def mount(_params, session, socket) do
-    IO.inspect(self())
-    #
-
     {:ok,
      socket
      |> assign(:result, %{})

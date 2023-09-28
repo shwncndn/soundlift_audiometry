@@ -26,6 +26,7 @@ defmodule SoundLift.Results do
       from r in Result,
         where: r.user_id == ^user_id
     )
+    |> Enum.map(&add_total_score/1)
   end
 
   def results_count do
@@ -50,29 +51,7 @@ defmodule SoundLift.Results do
 
   """
   def get_result!(id) do
-    result = Repo.get!(Result, id)
-    IO.inspect(result, label: "RESULT")
-
-    total_score =
-      Map.take(result, [
-        :step_1_left,
-        :step_1_right,
-        :step_2_left,
-        :step_2_right,
-        :step_3_left,
-        :step_3_right,
-        :step_4_left,
-        :step_4_right,
-        :step_5_left,
-        :step_5_right,
-        :step_6_left,
-        :step_6_right
-      ])
-      |> Map.values()
-      |> IO.inspect(label: "TEST RESULT")
-      |> Enum.sum()
-
-    Map.put(result, :total_score, total_score)
+    Result |> Repo.get!(id) |> add_total_score()
   end
 
   @doc """
@@ -138,5 +117,27 @@ defmodule SoundLift.Results do
   """
   def change_result(%Result{} = result, attrs \\ %{}) do
     Result.changeset(result, attrs)
+  end
+
+  defp add_total_score(%Result{} = result) do
+    total_score =
+      Map.take(result, [
+        :step_1_left,
+        :step_1_right,
+        :step_2_left,
+        :step_2_right,
+        :step_3_left,
+        :step_3_right,
+        :step_4_left,
+        :step_4_right,
+        :step_5_left,
+        :step_5_right,
+        :step_6_left,
+        :step_6_right
+      ])
+      |> Map.values()
+      |> Enum.sum()
+
+    Map.put(result, :total_score, total_score)
   end
 end
