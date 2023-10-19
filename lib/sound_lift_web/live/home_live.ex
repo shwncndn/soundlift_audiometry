@@ -22,11 +22,15 @@ defmodule SoundLiftWeb.HomeLive do
 
   def render(assigns) do
     ~H"""
+
     <body>
-      <h1 class="flex flex-col items-center text-slate-50 font-bold">Welcome!</h1>
+      <h1 class="flex flex-col items-center text-xl text-slate-50 mb-8 font-bold">Welcome!</h1>
       <h2 class="flex flex-col items-center text-slate-50 font-bold">Please find a quiet place.</h2>
       <h2 class="flex flex-col items-center text-slate-50 font-bold">
         Background noise will affect your results.
+      </h2>
+      <h2 class="flex flex-col items-center text-slate-50 font-bold">
+        Use headphones for best accuracy.
       </h2>
       <h2 class="flex flex-col items-center text-slate-50 mt-4">
         When ready, click the button below.
@@ -36,10 +40,12 @@ defmodule SoundLiftWeb.HomeLive do
           phx-click="go-to-test-page"
           class="rounded-full text-blue-900 font-bold text-sm my-8 w-28 h-8 bg-yellow-400 hover:bg-yellow-300"
         >
-          Take the Test!
+          Start
         </button>
-        <h1 class="text-slate-50">Total: <%= @stat_counter %></h1>
       </div>
+      <div>
+        <h1 class="flex flex-col items-center text-slate-50 mt-12 font-bold">Over <%= @stat_counter %> people have used this exam to assess their hearing!</h1>
+        </div>
     </body>
     """
   end
