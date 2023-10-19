@@ -1,6 +1,9 @@
 # SoundLift
 
 
+# SoundLift
+
+
 ```mermaid
 erDiagram
 User {

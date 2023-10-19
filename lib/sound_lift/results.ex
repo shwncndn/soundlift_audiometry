@@ -1,6 +1,6 @@
 defmodule SoundLift.Results do
   @moduledoc """
-  The Results context.
+    The Results context.
   """
 
   import Ecto.Query, warn: false
@@ -21,6 +21,21 @@ defmodule SoundLift.Results do
     Repo.all(Result)
   end
 
+  def list_results_for_user(user_id) do
+    Repo.all(
+      from r in Result,
+        where: r.user_id == ^user_id
+    )
+    |> Enum.map(&add_total_score/1)
+  end
+
+  def results_count do
+    Repo.one(
+      from r in Result,
+        select: count(r.id)
+    )
+  end
+
   @doc """
   Gets a single result.
 
@@ -35,7 +50,9 @@ defmodule SoundLift.Results do
       ** (Ecto.NoResultsError)
 
   """
-  def get_result!(id), do: Repo.get!(Result, id)
+  def get_result!(id) do
+    Result |> Repo.get!(id) |> add_total_score()
+  end
 
   @doc """
   Creates a result.
@@ -100,5 +117,27 @@ defmodule SoundLift.Results do
   """
   def change_result(%Result{} = result, attrs \\ %{}) do
     Result.changeset(result, attrs)
+  end
+
+  defp add_total_score(%Result{} = result) do
+    total_score =
+      Map.take(result, [
+        :step_1_left,
+        :step_1_right,
+        :step_2_left,
+        :step_2_right,
+        :step_3_left,
+        :step_3_right,
+        :step_4_left,
+        :step_4_right,
+        :step_5_left,
+        :step_5_right,
+        :step_6_left,
+        :step_6_right
+      ])
+      |> Map.values()
+      |> Enum.sum()
+
+    Map.put(result, :total_score, total_score)
   end
 end

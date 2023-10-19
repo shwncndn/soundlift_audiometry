@@ -18,15 +18,76 @@
 // Include phoenix_html to handle method=PUT/DELETE in forms and buttons.
 import "phoenix_html"
 // Establish Phoenix Socket and LiveView configuration.
-import {Socket} from "phoenix"
-import {LiveSocket} from "phoenix_live_view"
+import { Socket } from "phoenix"
+import { LiveSocket } from "phoenix_live_view"
 import topbar from "../vendor/topbar"
+import * as Tone from '../vendor/tone';
+
+const synth = new Tone.Synth().toDestination();
+
+const volume_values = {
+    1: -28,
+    2: -24,
+    3: -20,
+    4: -16,
+    5: -12,
+    6: -8,
+    7: -4,
+}
+
+const note_values = {
+    1: 250,
+    2: 500,
+    3: 1000,
+    4: 2000,
+    5: 4000,
+    6: 6000,
+    7: 8000,
+
+}
+
+// 1. check current URL 
+// 2. when push navigating on Elixir side
+// 3. when component is destroyed
+// 4. when JS registers navigation
+let Hooks = {
+    ToggleSound: {
+        updated() {
+            synth.volume.value = volume_values[this.el.dataset.volume]
+            synth.triggerAttack(note_values[this.el.dataset.step])
+        },
+
+        destroyed() {
+            synth.triggerRelease();
+            
+        },
+
+        mounted() {
+            this.soundOn = false;
+            this.el.addEventListener("click", () => {
+                if (this.soundOn) {
+                    synth.triggerRelease();
+                    this.soundOn = false;
+                } else {
+                    synth.triggerAttack(note_values[this.el.dataset.step])
+                    this.soundOn = true;
+                }
+            });
+            // this.handleEvent("stop_sound", () => {
+            //     synth.triggerRelease
+            // }) 
+        }
+    }
+
+}
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
+let liveSocket = new LiveSocket("/live", Socket, { hooks: Hooks, params: { _csrf_token: csrfToken } })
+
+
 
 // Show progress bar on live navigation and form submits
-topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
+topbar.config({ barColors: { 0: "#29d" }, shadowColor: "rgba(0, 0, 0, .3)" })
 window.addEventListener("phx:page-loading-start", _info => topbar.show(300))
 window.addEventListener("phx:page-loading-stop", _info => topbar.hide())
 

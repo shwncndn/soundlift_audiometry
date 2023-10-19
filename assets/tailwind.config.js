@@ -12,9 +12,21 @@ module.exports = {
     "../lib/*_web/**/*.*ex"
   ],
   theme: {
+    fontSize: {
+      sm: '0.8rem',
+      base: '1rem',
+      xl: '1.25rem',
+      '2xl': '1.563rem',
+      '3xl': '1.953rem',
+      '4xl': '2.441rem',
+      '5xl': '3.052rem',
+      '6xl': '3.75rem',
+    },
     extend: {
       colors: {
-        brand: "#FD4F00",
+        slblue: "#2e5a88",
+        slblack: "#010101",
+        slyellow: "#fdc413"
       }
     },
   },
